@@ -1,0 +1,360 @@
+body,html,.ubea-nav {
+    max-width:2800px;
+    margin:auto;
+}
+.advantage_para{
+    margin-top: 10px !important;
+    text-align: center;
+    min-height: 60px;
+}
+.hw_advantage_para{
+    margin-top: 10px !important;
+    padding-left: 77px;
+    text-align: left;
+    min-height: 60px;
+}
+.advantage_heading{
+    margin-top: 17px !important;
+}
+.title-bold{
+    color:#777
+}
+.step_para{
+    padding: 0 20px;
+}
+.ul_list{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+.ul_list li{
+    background:url("../images/icons/bullet.png") no-repeat 0 0;
+    padding-left:20px;
+    line-height:22px;
+    font-size:16px;
+    margin-top:15px;
+
+
+}
+
+@media screen and (max-width: 767px) {
+    #doctor_login_button, .doctor_logout_button {
+        padding: 0 10px;
+        margin-left: -5px;
+    }
+
+
+
+    #ubea-services1{
+        background: #FF5126 ;
+    }
+
+    .pstyle {
+        font-size: 10px !important;
+    }
+
+    #image_carsousel {
+        margin-top: 75px;      /*--------------- 007 code -----------------*/
+    }
+
+    .home_headings {
+        font-size: 25px;
+    }
+
+    .advantage_side_banner {
+        display: none;
+    }
+
+    .footer-col-centered {
+        float: none !important;
+        margin: 0 auto;
+    }
+
+    #doctor_login_modal .modal-dialog {
+        top: 100px
+    }
+
+    .video_container {
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    .video_iframe {
+        width: 100%;
+    }
+
+    .footer_head {
+        padding-left: 38px;
+    }
+
+    .dropdown-menu > li > a {
+        color: #777;
+    }
+    .footer_head{
+        padding:0;
+    }
+    .footer-col-centered{
+        margin:0;
+    }
+    .how_it_work_container{
+        margin-top: 50px !important;
+    }
+    .how_it_work_container_row{
+        margin-bottom: 40px !important;
+    }
+}
+
+.dropdown-backdrop {
+    position: static;
+}
+
+.dropdown-menu {
+    background: transparent !important;
+}
+
+@media screen and (min-width: 768px) {
+    #ubea-services1{
+        /*background-image: url('../images/new/how_it_works_section.jpg');*/
+        /*-webkit-background-size: 100% ;*/
+        /*background-size: 100% ;*/
+        /*background-repeat:no-repeat;*/
+        /*background-position: 0 -50px;*/
+        background: #FF5126;
+        margin-bottom: 100px;
+    }
+    .welcome .col-md-3{
+        width:24.97%;
+    }
+    .how_it_work_container{
+        margin-top: 50px !important;
+    }
+    .how_it_work_container_row{
+        /*margin-bottom: 150px !important;*/
+    }
+
+    .or_div {
+        line-height: 70px;
+    }
+
+    .video_container {
+        padding-top: 30px;
+        padding-right: 0;
+        text-align: right;
+    }
+
+    .home_headings {
+        text-align: center;
+        /*font-weight: 100;*/
+        font-size: 47px;
+        font-weight: 600;
+    }
+
+    .footer_headings {
+        text-align: center;
+        font-weight: 100;
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .mobile_fixed_button {
+        display: none;
+    }
+
+    .carousel-inner > .item {
+        padding-top: 85px;
+    }
+
+}
+
+#doctor_login_button {
+    background: #FF5126
+}
+
+#doctor_login_button:hover {
+    background: #FC583F !important;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1115px) {
+    #doctor_login_button, .doctor_logout_button {
+        padding: 5px;
+    }
+
+    .ubea-nav ul li a {
+        padding: 5px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .headerlogo {
+        width: 100px;
+        padding-top:0 !important;
+        /*MARGIN-TOP: -21px;*/
+    }
+    .footer-li li a{
+        font-size:14px !important;          /*-----------007 code add strt ---------------------- */
+    }
+    .pad-zero{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .Advmedia > p,.wtsa > p{
+       /* text-align: justify !important;*/
+       /* padding-left: 15px !important;*/
+    }
+    .pad-zero>.col-xs-6{
+        width:49% !important;
+    }
+    .welcome .col-xs-6{
+        width:49%;
+    }
+    /*-----------007 code add strt ---------------------- */
+}
+
+@media screen and (min-width: 1116px) {
+    #doctor_login_button, .doctor_logout_button {
+        color: white;
+        /*background: #1a7df6;*/
+        padding: 5px 16px !important;
+        border: none;
+    }
+
+    .ubea-nav ul li a {
+        padding: 5px !important;
+        font-size: 15px !important;
+    }
+}
+
+.vcenter {
+    display: inline;
+    vertical-align: top;
+    float: none;
+}
+
+.or_div {
+    color: #fff;
+    line-height: 1;
+    margin: auto auto 15px auto;
+    background: #FF5126;
+    padding: 15px 0;
+    text-align: center;
+    width: 45px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+.loader_div {
+    display: none;
+}
+
+.pstyle {
+    line-height: 22px;
+}
+
+.jumbotron p {
+    font-weight: normal !important;
+    font-weight:100 !important;
+}
+
+.footer_pstyle {
+    font-size: 15px !important;
+    line-height: 1.34;          /* ---------------007 code 1--to--1.34------------------*/
+}
+
+.footer-li {
+    font-size: 17px;
+}
+
+.client {
+    background: #4967b0;
+    color: #fff;
+}
+
+.doctor {
+    background-color: #FF5126;
+    color: #fff;
+}
+
+.col2 {
+    display: inline-block;
+    width: 50%;
+    float: left;
+    cursor: pointer;
+    height:35px;
+    line-height: 35px;
+}
+
+.mobile_fixed_button {
+    position: fixed;
+    bottom: 0;
+    z-index: 3;
+    width: 100%;
+}
+
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    .headerlogo {
+        /*width: 100px;*/
+        /*margin-top: -20px;*/
+    }
+
+    .carousel-inner > .item {
+        padding-top: 77px
+    }
+}
+/* ipad pro */
+@media only screen
+and (min-device-width: 1024px)
+and (max-device-width: 1366px)
+and (orientation: portrait) {
+    .headerlogo {
+        width: 100px;
+        padding-top: 15px;          /*-------------------- new code 007 -----------------*/
+        /*margin-top: -20px;*/
+    }
+/*
+    .carousel-inner > .item {
+        padding-top: 77px
+    }*/
+}
+
+
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px)
+and (orientation: portrait) {
+    .headerlogo {
+        width: 100px;
+        /*margin-top: -20px;*/
+    }
+
+    .carousel-inner > .item {
+        padding-top: 77px
+    }
+}
+
+/*iphone 6 */
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 667px)
+and (orientation: portrait) {
+    .wtsa {
+        width: 49%;
+    }
+}
+
+/*close iphone 6 */
+
+/*iphone 5 and 5se */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 568px)
+and (orientation: portrait) {
+    .wtsa {
+        width: 49%;
+    }
+}
+
+/* close iphone 5 and 5se */
