@@ -1,1 +1,0 @@
-[25-Aug-2021 11:38:04 UTC] PHP Fatal error:  Cannot redeclare Admin_model::deletePatientByID() in /home/a91t9c0a6fbu/public_html/dev1/application/modules/admin/models/Admin_model.php on line 117
