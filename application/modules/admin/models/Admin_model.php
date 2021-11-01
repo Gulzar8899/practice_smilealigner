@@ -76,6 +76,8 @@ class Admin_model extends CI_Model {
     function udpateDoctorStatus($doctorID, $data)
     {
         $this->db->where('id',$doctorID);
+        $this->db->where('id',$doctorID);
+
         return $this->db->update('users',$data);
     }
     function udpatePlannerStatus($id, $data)
@@ -146,7 +148,15 @@ class Admin_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->where('user_type_id', 5);
+        $this->db->where('user_type_id', 1);
         $res = $this->db->get('users');
+        return $res->result();
+    }
+     function getshipping_address()
+    {
+        $this->db->select('*');
+        $this->db->join('users', 'users.id = shipping_address.doctor_id');
+        $res = $this->db->get('shipping_address');
         return $res->result();
     }
     function getTreatmentData()
@@ -397,5 +407,12 @@ class Admin_model extends CI_Model {
         $res = $this->db->get('cities');
         return $res->result();
     }
+    function getDoctorID($doctorID)
+    {
+        $this->db->select('*');
+        $this->db->where('doctor_id',$doctorID);
+        $res = $this->db->get('shipping_address');
+        return $res->result();
+    }  
 
 }

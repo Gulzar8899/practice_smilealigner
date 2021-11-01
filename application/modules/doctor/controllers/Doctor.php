@@ -14,6 +14,7 @@ class Doctor extends MY_Controller
      */
 
     public $data;
+
     /**
      * function to invoke necessary component
      * @author Surfiq Tech
@@ -85,6 +86,7 @@ class Doctor extends MY_Controller
         $data['cities'] = $this->Admin_model->getAllCities();      
         $data['default_shipping_address'] = $this->Admin_model->getDefaultShipppingAddress($adminID);
         $data['shipping_address_except_default'] = $this->Admin_model->getShipppingAddressExceptDefault($adminID);
+
         // $data['shipping_address'] = $this->Doctor_model->getShipppingAddress($adminID);
 //         print_r($data['shipping_address']);die();
         $this->load->view('elements/admin_header',$data);
@@ -105,6 +107,9 @@ class Doctor extends MY_Controller
 
         if($this->input->post('password')!='') {
             $updateData['password'] = sha1($this->input->post('password'));
+        }
+        if($this->input->post('email')!='') {
+            $updateData['email'] = ($this->input->post('email'));
         }
 
         $result = $this->Admin_model->udpateDoctorStatus($doctorID , $updateData);
@@ -353,9 +358,7 @@ class Doctor extends MY_Controller
         $data['allPatientListData'] = $patient_data_array;
         $data['shipping_address'] = $this->Admin_model->getDoctorShippingAddress();
 
-         // echo "<pre>";
-         // print_r($data['allPatientListData']);
-         // die();
+
 
         $this->load->view('elements/admin_header',$data);
         $this->load->view('doctor_topbar',$data);
@@ -386,10 +389,12 @@ class Doctor extends MY_Controller
         $data['treatment_data'] = $this->Admin_model->getTreatmentData();
         $data['treatment_case_data'] = $this->Admin_model->getTreatmentCaseData();
         $data['arch_data'] = $this->Admin_model->getArchData();
-        
+        $data['shipping_data'] = $this->Admin_model->getshipping_address();
+        $data['shipping_data'] = $this->Admin_model->getDoctorID($doctorID);
 
-
-         //$this->load->view('elements/front_topbar',$data);
+  // echo '<pre>';
+  //      print_r($data2); exit();
+               //$this->load->view('elements/front_topbar',$data);
          //$this->load->view('doctor_topbar',$data);
          //$this->load->view('doctor_sidebar',$data);
          // $this->load->view('patients/addPatient',$data);
@@ -420,8 +425,8 @@ class Doctor extends MY_Controller
                 'pt_email' => $this->input->post('pt_email'),
                 'pt_img' => $this->input->post('pt_img_name'),
                 'pt_scan_impression' => $this->input->post('pt_scan_impression'),
-                'pt_objective' => $this->input->post('pt_objective'),
-                'pt_referal' => $this->input->post('pt_referal'),
+               // 'pt_objective' => $this->input->post('pt_objective'),
+                'shipping_address' => $this->input->post('shipping_address'),
                 'pt_age' => $this->input->post('pt_age'),
                 'type_of_treatment' => json_encode(implode(",", $treatmentData)),
                 'other_type_of_treatment' => $this->input->post('other_type_of_treatment'),
@@ -431,7 +436,9 @@ class Doctor extends MY_Controller
                 'ipr_performed' => $this->input->post('ipr_performed'),
                 'pt_status' => 1,
                 'added_by' => $userID,
-                'cur_date' => date('Y-m-d')
+                'cur_date' => date('Y-m-d'),
+                //'p_shipping_address' => $this->input->post('p_shipping_address')
+
         );
         $patientID = $this->Doctor_model->insertPatientsData($patientData);
         if($patientID)
@@ -637,7 +644,7 @@ class Doctor extends MY_Controller
         $archData = $this->input->post('archData');
 
         $patientData['type_of_treatment'] = json_encode(implode(",", $treatmentData));
-        $patientData['other_type_of_treatment'] = $this->input->post('other_type_of_treatment');
+        $patientData['other_type_of_treatment']= $this->input->post('other_type_of_treatment');
         $patientData['type_of_case'] = json_encode(implode(",", $treatmentCaseData));
         $patientData['arc_treated'] = json_encode(implode(",", $archData));
         $patientData['attachment_placed'] = $this->input->post('attachment_placed');

@@ -13,7 +13,7 @@ class Register extends MY_Controller
      * @author Surfiq Tech
      */
     
-    public $data;  
+    public $data; 
     /**
      * function to invoke necessary component
      * @author Surfiq Tech

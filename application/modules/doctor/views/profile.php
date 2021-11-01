@@ -43,7 +43,7 @@
                          <div class="uk-form-row">                                    
                             <label><b>Login and Primary Email</b></label>
                             <br>
-                            <input type="text" name="email" class="md-input input-border" value="<?= $doctorData->email; ?>" disabled/>
+                            <input type="text" name="email" class="md-input input-border" value="<?= $doctorData->email; ?>">
                          </div>
                     </div>
 

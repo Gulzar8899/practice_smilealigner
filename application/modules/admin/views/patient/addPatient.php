@@ -12,7 +12,6 @@
         border: 1px solid red;
     }
 </style>
-
 <div id="page_content">
     <div id="page_content_inner" class="page_content-p">
         <br>

@@ -165,23 +165,21 @@
                                 </div>
                             </div> 
                         </div>
-                        <div class="uk-grid">
+                       <!-- <div class="uk-grid">
                             <div class="uk-width-1-1">
                                 <div class="parsley-row">
                                     <label class="label-p" for="exampleFormControlFile1"><b>Treatment Objective</b></label><br>
                                     <textarea placeholder="Treatment Objective" class="md-input input-border" name="pt_objective" cols="10" rows="8" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-validation-threshold="10" data-parsley-minlength-message = "Come on! You need to enter at least a 20 caracters long comment.." placeholder="Enter Treatment Objective"></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="uk-grid" data-uk-grid-margin>
                             <div class="uk-width-medium-1-3 uk-width-large-1-2">
-                                <label class="label-p" for="exampleFormControlFile1"><b>Referral Name</b></label>
-                                <select id="select_demo_1" name="pt_referal" data-md-selectize>
-                                    <option value=""><b>Referral Name</b></option>
-                                   <?php foreach($business_developer as $developer){?>
-                                    <?php $developer_name = $developer->first_name." ".$developer->last_name; ?>
-                                     <option value="<?= $developer->id;?>"><?= $developer_name;?></option>
-                                   <?php } ?>
+                                <label class="label-p" for="exampleFormControlFile1"><b>Shipping Address</b></label>
+                                <select id="select_demo_1" name="shipping_address" data-md-selectize>
+                                   <?php foreach($shipping_data as $row){?>
+                                     <option value="<?= $row->id;?>"><?= $row->street_address." ".$row->city." ".$row->country." ".$row->zip_code;?></option>
+                                     <?php } ?>
                                 </select>
                             </div>
                         </div>

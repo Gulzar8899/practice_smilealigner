@@ -212,6 +212,6 @@ class Doctor_model extends CI_Model {
         $res = $this->db->get('photos');
         return $res->result_array();   
     }
-    
+     
 
 }
