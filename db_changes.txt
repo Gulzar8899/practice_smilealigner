@@ -1,0 +1,95 @@
+Payment Table:
+
+Add new columns: 
+photos_id, invoice_no, payment_amount, amount_type
+
+
+
+
+***********************************************
+05 Oct 2021
+***********************************************
+
+User Table:
+
+Add new columns:
+street_address, country, state, city, zip_code, default_billing_address
+
+
+
+Shipping Table:
+
+Add new columns:
+street_address, country, state, city, zip_code, default_shipping_address
+
+***********************************************
+12 Oct 2021
+***********************************************
+Add New Column in Patient Table (Other Type Treatment)
+ALTER TABLE `patients` ADD `other_type_of_treatment` VARCHAR(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL AFTER `type_of_treatment`;
+
+
+***********************************************
+22 Oct 2021
+***********************************************
+ALTER TABLE `shipping_address` ADD `check_all` INT(100) NOT NULL DEFAULT '0' AFTER `default_shipping_address`;
+ALTER TABLE `shipping_address` CHANGE `doctor_id` `doctor_id` VARCHAR(255) NOT NULL;
+
+
+***********************************************
+27 Oct 2021
+***********************************************
+NEW BILLING ADDRESS TABLE:
+
+CREATE TABLE `billing_address` (
+  `id` int(11) NOT NULL,
+  `doctor_id` varchar(255) NOT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `state` varchar(100) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `street_address` varchar(255) DEFAULT NULL,
+  `zip_code` varchar(100) DEFAULT NULL,
+  `default_billing_address` int(11) NOT NULL,
+  `check_all` int(100) NOT NULL DEFAULT 0,
+  `added_by` int(11) DEFAULT NULL,
+  `created_by` timestamp NULL DEFAULT current_timestamp(),
+  `updated_by` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `billing_address`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+
+***********************************************
+28 Oct 2021
+***********************************************
+// New Plans Table
+CREATE TABLE `plans` ( `id` int(11) NOT NULL, `user_id` int(11) NOT NULL, `patient_id` int(2) NOT NULL, `detail` varchar(255) DEFAULT NULL, `upper` varchar(255) DEFAULT NULL, `lower` varchar(255) DEFAULT NULL, `petg_amount` varchar(255) DEFAULT NULL, `duo_amount` varchar(255) DEFAULT NULL, `link` varchar(255) DEFAULT NULL, `pdf_file` varchar(255) DEFAULT NULL, `video_file` varchar(255) DEFAULT NULL, `pre_status` int(2) NOT NULL DEFAULT 0, `status` int(2) NOT NULL DEFAULT 0, `updated` int(2) NOT NULL DEFAULT 0, `created_at` timestamp NOT NULL DEFAULT current_timestamp(), `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+ALTER TABLE `plans` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+
+// New Plan_details Table
+CREATE TABLE `plan_details` ( `id` int(11) NOT NULL, `plan_id` int(11) NOT NULL, `treatment_type` varchar(100) DEFAULT NULL, `upper_sheet` varchar(100) DEFAULT NULL, `upper_aligners` varchar(100) DEFAULT NULL, `lower_sheet` varchar(100) DEFAULT NULL, `lower_aligners` varchar(100) DEFAULT NULL, `rejected_reason` varchar(255) DEFAULT NULL, `created_at` timestamp NOT NULL DEFAULT current_timestamp(), `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+ALTER TABLE `plan_details` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`)
+
+
+***********************************************
+29 Oct 2021
+***********************************************
+
+ADD COLUMNS COMMENT
+
+ALTER TABLE `plans` CHANGE `pre_status` `pre_status` INT(2) NOT NULL DEFAULT '0' COMMENT '0=modify, 1=modified';
+ALTER TABLE `plans` CHANGE `status` `status` INT(2) NOT NULL DEFAULT '0' COMMENT '0=draft, 1=accepted, 2=rejected';
+ALTER TABLE `plans` CHANGE `updated` `updated` INT(2) NOT NULL DEFAULT '0' COMMENT '0=nothing, 1=new, 2=updated';
+ALTER TABLE `plans` ADD `seen` INT NOT NULL DEFAULT '0' AFTER `updated`;
+ALTER TABLE `plans` CHANGE `updated` `updated` INT(2) NOT NULL DEFAULT '0' COMMENT '0=old, 1=new, 2=updated';
+ALTER TABLE `plans` CHANGE `seen` `seen` INT(11) NOT NULL DEFAULT '0' COMMENT '0=Not Seen, 1=Seen';
+ALTER TABLE `plans` CHANGE `updated` `updated` INT(2) NOT NULL DEFAULT '1' COMMENT '0=old, 1=new, 2=updated';
+
+***********************************************
+30 Oct 2021
+***********************************************
+ALTER TABLE `plans` ADD `title` VARCHAR(255) NULL AFTER `patient_id`;
+
