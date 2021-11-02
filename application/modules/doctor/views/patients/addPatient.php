@@ -175,12 +175,22 @@
                         </div>
                         <div class="uk-grid" data-uk-grid-margin>
                             <div class="uk-width-medium-1-3 uk-width-large-1-2">
-                                <label class="label-p" for="exampleFormControlFile1"><b>Referral Name</b></label>
-                                <select id="select_demo_1" name="pt_referal" data-md-selectize>
-                                    <option value=""><b>Referral Name</b></option>
-                                   <?php foreach($business_developer as $developer){?>
-                                    <?php $developer_name = $developer->first_name." ".$developer->last_name; ?>
-                                     <option value="<?= $developer->id;?>"><?= $developer_name;?></option>
+                                <label class="label-p" for="exampleFormControlFile1"><b>Shipping Address</b></label>
+                                 <select id="select_demo_2" name="pt_shipping_details" data-md-selectize>
+                                    <option value=""><b>shipping address</b></option>
+                                   <?php foreach($shipping_address as $shipping){?>
+                                    <?php $street_name = $shipping->street_address.' '.$shipping->country.' '.$shipping->city.' '.$shipping->state.' '.$shipping->zip_code; ?>
+                                     <option value="<?= $shipping->id;?>"><?= $street_name;?></option>
+                                   <?php } ?>
+                                </select>
+                            </div>
+                            <div class="uk-width-medium-1-3 uk-width-large-1-2">
+                                <label class="label-p" for="exampleFormControlFile1"><b>Billing Address</b></label>
+                                <select id="select_demo_1" name="pt_billing_address" data-md-selectize>
+                                    <option value=""><b>billing address</b></option>
+                                   <?php foreach($billing_address as $billing){?>
+                                    <?php $billing_address = $billing->street_address.' '.$billing->country.' ' .$billing->state.' ' .$billing->city; ?>
+                                     <option value="<?= $billing->id;?>"><?= $billing_address;?></option>
                                    <?php } ?>
                                 </select>
                             </div>

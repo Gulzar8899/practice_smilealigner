@@ -396,6 +396,13 @@
                                 }
 
                             $pt_billing_address = $patientData['pt_billing_address'];
+
+                           foreach ($billing_address as $billing) { 
+                                    if($pt_billing_address == $billing->id ){
+                                        $pt_billing_address = $billing->street_address .", ". $billing->city.", ". $billing->state.", ". $billing->country.", ". $billing->zip_code;
+                                    }
+                                }
+
                             $pt_dispatch_date = $patientData['pt_dispatch_date'];
                             $patientData = $patientData['patient_photos'];
                             

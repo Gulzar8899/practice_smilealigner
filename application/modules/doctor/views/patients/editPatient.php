@@ -221,6 +221,7 @@
                                 <label><input type="radio" name="pt_scan_impression" value="no" <?php echo $singlePatient[$i]['pt_scan_impression'] == 'no' ? 'checked' : ''; ?>/>No</label>
                                 <label><input type="radio" name="pt_scan_impression" value="yes" <?php echo $singlePatient[$i]['pt_scan_impression'] == 'yes' ? 'checked' : ''; ?>/>Yes</label>
                             </div>
+
                         </div>
                         <div class="uk-grid imageSpaceSetting">
                             <div class="uk-width-1-1">
@@ -271,13 +272,28 @@
                         </div>
                         <div class="uk-grid" data-uk-grid-margin>
                             <div class="uk-width-medium-1-3 uk-width-large-1-2">
-                                <label class="label-p" for="exampleFormControlFile1"><b>Referral Name</b></label>
-                                <select id="select_demo_1" name="pt_referal" data-md-selectize>
-                                    <option value=""><b>Referral Name</b></option>
-                                    <?php foreach($business_developer as $developer){?>
-                                    <?php $developer_name = $developer->first_name." ".$developer->last_name; ?>
-                                        <option <?=($singlePatient[$i]['pt_referal'] == $developer->id)?'selected':'';?> value="<?= $developer->id; ?>"><?= $developer_name;?></option>
-                                    <?php } ?>
+                                <label class="label-p" for="exampleFormControlFile1"><b>Shipping Address</b></label>
+                                <select id="select_demo_1" name="pt_shipping_details" data-md-selectize>
+                                    <option value=""><b>Shipping Addresss</b></option>
+                                    <?php foreach($patients_id as $row){
+                                        $pt_billing_address = $row->pt_billing_address;
+                                        $pt_shipping_details = $row->pt_shipping_details;
+                                        }?>
+
+                                   <?php foreach($shipping_address as $shipping){?>
+                                    <?php $street_name = $shipping->street_address.' '.$shipping->country.' '.$shipping->city.' '.$shipping->state.' '.$shipping->zip_code; ?>
+                                     <option value="<?= $shipping->id;?>" <?php if($shipping->id==$pt_shipping_details){ echo 'selected';}?>> <?=$street_name;?></option>
+                                   <?php } ?>
+                                </select>
+                            </div>
+                            <div class="uk-width-medium-1-3 uk-width-large-1-2">
+                                <label class="label-p" for="exampleFormControlFile1"><b>Billing Address</b></label>
+                                <select id="select_demo_1" name="pt_billing_dddress" data-md-selectize>
+                                    <option value=""><b>Billing Address</b></option>
+                                     <?php foreach($billing_address as $billing){?>
+                                    <?php $billing_address = $billing->street_address.' '.$billing->country.' ' .$billing->state.' ' .$billing->city; ?>
+                                     <option value="<?= $billing->id;?>" <?php if($billing->id==$pt_billing_address){ echo 'selected';}?>> <?=$billing_address; ?></option>
+                                   <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -287,7 +303,7 @@
                                 <div style="display: block;" class="demo-checkbox col-md-12 uk-margin-small-top">
                                     <?php 
                                         $typeOfTreatment = json_decode($singlePatient[$i]['type_of_treatment'], true);
-                                        $str_arr = explode (",", $typeOfTreatment); 
+                                     $str_arr = explode (",", $typeOfTreatment); 
                                         foreach($treatment_data as $treatmentData): 
                                     ?>
                                         <div class="col-md-2 pl-0" style="margin-bottom:8px;">

@@ -456,7 +456,7 @@ class Admin_model extends CI_Model {
     }
 
      // Get All Cities
-    function getPatientListByDoctorID($doctorID)
+    function getPatientListByDoctorID()
     {
         $this->db->select('*');
         // $this->db->where('doctor_id', $doctorID);
@@ -464,4 +464,13 @@ class Admin_model extends CI_Model {
         return $res->result();
     }
 
+
+    function getAllBillingAddress($doctorID)
+    {
+        $this->db->select('*');
+        $this->db->where('doctor_id',$doctorID);
+        $res = $this->db->get('billing_address');
+        return $res->result();
+    }
+    
 }
