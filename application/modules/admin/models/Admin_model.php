@@ -478,4 +478,12 @@ class Admin_model extends CI_Model {
         return $res->result();
     }
 
+    // Get all billing Address
+    function getAllBillingAddress()
+    {
+        $this->db->select('*');
+        $res = $this->db->get('billing_address');
+        return $res->result();
+    } 
+
 }

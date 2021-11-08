@@ -250,9 +250,18 @@
                                             <div class="uk-width-large-4-10">
                                                 <span class="themeTextColor"><b>Billing Address</b></span>
                                             </div>
-                                            <div class="uk-width-large-6-10">
-                                                <span><?= ($patientData['pt_billing_address'] != '') ? $patientData['pt_billing_address'] : 'N/A'; ?></span>
-                                            </div>
+                                        <?php foreach ($billng_address as $key => $billing): ?>
+                                            <?php  if($billing->id == $patientData['pt_billing_address']){ ?>
+                                                <div class="uk-grid uk-margin-medium-top" data-uk-grid-margin>
+                                                    <div class="uk-width-large-4-10">
+                                                        <span class="themeTextColor"><b>Billing Address</b></span>
+                                                    </div>
+                                                    <div class="uk-width-large-6-10">
+                                                        <span><?= ($billing->country != '') ?  $billing->street_address.", ".$billing->city.", ".$billing->state.", ".$billing->country.", ".$address->zip_code : 'N/A'; ?></span>
+                                                    </div>
+                                                 </div>
+                                        <?php } ?>
+                                        <?php endforeach; ?>
                                         </div>
                                         <div class="uk-grid uk-margin-medium-top" data-uk-grid-margin>
                                             <div class="uk-width-large-4-10">
