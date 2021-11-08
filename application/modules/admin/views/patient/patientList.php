@@ -303,11 +303,9 @@
                             <th class="tblHeading"><b>Cost of Plan</b></th>
                             <th class="tblHeading"><b>Total Amount Paid</b></th>
                             <th class="tblHeading"><b>Balance Amount</b></th>
-                            <!-- <th class="tblHeading"><b>Pending Amount</b></th> -->
                             <th class="tblHeading"><b>Shipping Details</b></th>
                             <th class="tblHeading"><b>Billing Address</b></th>
                             <th class="tblHeading"><b>Dispatch Date</b></th>
-                            <!-- <th class="tblHeading"><b>Dispatch Details</b></th> -->
                             <th class="tblHeading"><b>IPR</b></th>
                             <th class="tblHeading"><b>Invoice</b></th>
                             <th class="tblHeading"><b>Actions</b></th>
@@ -396,13 +394,6 @@
                                 }
 
                             $pt_billing_address = $patientData['pt_billing_address'];
-
-                           foreach ($billing_address as $billing) { 
-                                    if($pt_billing_address == $billing->id ){
-                                        $pt_billing_address = $billing->street_address .", ". $billing->city.", ". $billing->state.", ". $billing->country.", ". $billing->zip_code;
-                                    }
-                                }
-
                             $pt_dispatch_date = $patientData['pt_dispatch_date'];
                             $patientData = $patientData['patient_photos'];
                             

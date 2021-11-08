@@ -299,6 +299,7 @@
 
                             $pt_impressions = $patientData['pt_scan_impression'];
                             $pt_objective = $patientData['pt_objective'];
+                            $pt_special_instruction = $patientData['pt_special_instruction'];
                             $pt_referal = $patientData['pt_referal'];
                             $pt_treatment_plan = $patientData['pt_treatment_plan'];
                             $pt_approval_date = $patientData['pt_approval_date'];
@@ -320,9 +321,9 @@
                                 }
                             }
                             $pt_billing_address = $patientData['pt_billing_address'];
-                                foreach ($billing_address as $billing) { 
-                                 if($pt_billing_address == $billing->id ){
-                                    $pt_billing_address = $billing->street_address .", ". $billing->city.", ". $billing->state.", ". $billing->country.", ". $billing->zip_code;
+                            foreach ($billing_address as $address) { 
+                                if($pt_billing_address == $address->id ){
+                                    $pt_billing_address = $address->street_address .", ". $address->city.", ". $address->state.", ". $address->country.", ". $address->zip_code;
                                 }
                             }
                             $patientData = $patientData['patient_photos'];
@@ -428,7 +429,7 @@
                             </td> -->
                             <!-- END Scan Impression -->
                             <td class="tblRow"><?php if(!empty($pt_impressions)){echo $pt_impressions;}else{echo '- - -';} ?></td>
-                            <td class="tblRow"><?php if(!empty($pt_objective)){echo substr($pt_objective, 0, 25)."...."; }else{echo '- - -';} ?></td>
+                            <td class="tblRow"><?php if(!empty($pt_special_instruction)){echo substr($pt_special_instruction, 0, 25)."...."; }else{echo '- - -';} ?></td>
                             <td class="tblRow"><?php if(!empty($pt_referal)){echo $pt_referal;}else{echo '- - -';} ?></td>
                             <td class="tblRow"><?php if(!empty($pt_treatment_plan)){echo substr($pt_treatment_plan, 0, 25); }else{echo '- - -';} ?></td>
                             <td class="tblRow"><?php if(!empty($pt_approval_date)){echo $pt_approval_date;}else{echo '- - -';} ?></td>

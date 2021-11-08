@@ -54,10 +54,28 @@
                             <?php endif; ?>
                                 </span>
 
-                                <span class="uk-flex uk-flex-between" style="align-items:center; margin-top: 15px;">
+                               <!--  <span class="uk-flex uk-flex-between" style="align-items:center; margin-top: 15px;">
                                     <h3 class="text-black m-0p"><b><?= ($treatmentPlans->title != '') ? $treatmentPlans->title : 'Treatment Plan Title';?></b></h3>
                                     <a class="md-btn view-treatmentPlan-case" href="<?php echo base_url('treatmentplanner/patient/viewTreatmentPlanDetails/').$treatmentPlans->id; ?>"><img src="<?php echo base_url('assets/images/eye-icon.svg'); ?>">&nbsp;&nbsp;View Plan Details</a>
-                                </span>
+                                </span> -->
+                            <div class="uk-grid">
+                                <div class="uk-width-medium-1-2 uk-flex uk-flex-middle uk-margin-medium-top">
+                                    <span>
+                                        <h3 style="margin:0px;"><b><?= ($treatmentPlans->title != '') ? $treatmentPlans->title : 'Treatment Plan Title';?></b></h3>
+                                    </span>
+                                </div>
+                                <div class="uk-width-medium-1-2 uk-flex uk-flex-middle uk-flex-right uk-margin-medium-top">
+                                     <span  class="p-5p">
+                                         <a class="clickme" data-id="<?= $treatmentPlans->id; ?>" href="<?php echo base_url('treatmentplanner/patient/viewTreatmentPlanDetails/').$treatmentPlans->id; ?>"><img src="<?php echo base_url('assets/images/view-plan-details.svg'); ?>">
+                                         </a>
+                                      </span>
+                                   <!--  <span>
+                                     <a class="md-btn view-treatmentPlan-case clickme" data-id="<?= $treatmentPlans->id; ?>" href="<?php echo base_url('treatmentplanner/patient/viewTreatmentPlanDetails/').$treatmentPlans->id; ?>"><img src="<?php echo base_url('assets/images/eye-icon.svg'); ?>">&nbsp;&nbsp;View Plan Details</a>
+                                      </span> -->
+                                </div>
+                                
+                            </div>
+                            
                         </div>
                     </div>
                     <?php endforeach; ?>

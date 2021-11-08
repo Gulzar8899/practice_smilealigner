@@ -75,9 +75,9 @@
                         <div class="uk-grid uk-margin-medium-top" style="margin-left:-20px;">
                             <div class="uk-width-large-1-5 uk-width-1-1 uk-margin-small-bottom">
                                 <div class="plan-info uk-flex uk-flex-middle pl-15p br-8p">
-                                    <div>
+                                    <div class="uk-flex uk-flex-middle uk-flex-left">
                                         <a><img src="<?php echo site_url('assets/images/Subtract.svg'); ?>"></a>
-                                        <span class="pl-10p">Video.mp4</span>
+                                        <span class="ml-10p">Video.mp4</span>
                                     </div>
                                     <div>
                                         <a class="pr-10p" href="<?= site_url('doctor/getdownloadVideoPlanFile/').$getSingleTreatmentPlan->id; ?>"><img src="<?php echo site_url('assets/images/direct-download.svg'); ?>"></a>
@@ -86,10 +86,11 @@
                             </div>
                             <div class="uk-width-large-1-4 uk-width-1-1 uk-margin-small-bottom pl-25p">
                                 <div class="plan-info uk-flex uk-flex-middle pl-15p br-8p">
-                                    <div>
+                                    <div class="uk-flex uk-flex-middle uk-flex-left">
                                         <a><img src="<?php echo site_url('assets/images/pdf.svg'); ?>"></a>
-                                        <span class="pl-10p">Treatment Plan.Pdf</span>
+                                        <span class="ml-10p">Treatment Plan.Pdf</span>                                        
                                     </div>
+
                                     <div>
                                         <a class="pr-10p" href="<?= site_url('doctor/getdownloadPdfPlanFile/').$getSingleTreatmentPlan->id; ?>"><img src="<?php echo site_url('assets/images/direct-download.svg'); ?>"></a>
                                     </div>
@@ -98,9 +99,17 @@
 
                             <div class="uk-width-large-1-3 uk-width-1-1 pl-25p">
                                 <div class="plan-info uk-flex uk-flex-middle pl-15p br-8p">
-                                    <div>
+                                    <div class="uk-flex uk-flex-middle uk-flex-left">
                                         <a><img src="<?php echo site_url('assets/images/global1.svg'); ?>"></a>
-                                        <span class="" style="word-wrap:break-word !important;"><?= $getSingleTreatmentPlan->link; ?></span>
+                                        <span class="ml-10p" style="word-wrap:break-word !important;">
+                                            <?php
+                                                if(strlen($getSingleTreatmentPlan->link) <= 22){
+                                                   echo $getSingleTreatmentPlan->link;
+                                                }else{
+                                                    echo substr($getSingleTreatmentPlan->link, 0, 22)."/.....";
+                                                }   
+                                             ?>
+                                        </span>
                                     </div>
                                     <div>
                                         <a class="pr-10p"><img src="<?php echo site_url('assets/images/Vector (2).svg'); ?>"></a>
@@ -244,7 +253,7 @@
                                   </div>
                                     
                                     <p class="mb-0p uk-margin-medium-top" style="color:grey;font-size: 12px;">Next Order will be in 14 Days</p>
-                                    <a class="uk-margin-small-top md-btn order-further-align-btn" href="http://localhost/smilealigners/doctor/viewTreatmentPlan">Order Further Alignment</a>
+                                    <a class="uk-margin-small-top md-btn order-further-align-btn" href="">Order Further Alignment</a>
 
 
 
@@ -271,143 +280,134 @@
             </div>
         <?php endif; ?>
 
-
-        <?php  $pre_status = array_search(1, array_column($getPatientTreatmentPlans, 'pre_status')); ?>
-        <?php  $status = array_search(1, array_column($getPatientTreatmentPlans, 'status')); ?>
-
-<!--         <?= 'pre'. $pre_status; ?>
-        <?= 'st'. $status; ?>
-        <?php if($pre_status == null && $status == null): ?>
-        <?= 'no' ?> -->
-
-        <?php endif; ?>
-
         <!-- Treatment Accepted Modify -->
-        <?php if($getSingleTreatmentPlan->pre_status == 0 && $getSingleTreatmentPlan->status == 1): ?>
-             <div class="md-card uk-margin-medium-bottom">
-                <div class="md-card-content" style="margin-top:33px;  padding-top:0px !important; padding-bottom:0px !important;">
-                    <form method="POST" action="<?= site_url('doctor/submitPlanDetails/').$getSingleTreatmentPlan->id; ?>" enctype="multipart/form-data">
-                    <div class="uk-grid" data-uk-grid-margin>
-                            <div class="uk-width-medium-1-1">
-                                <h2 class="pt-20p">Treatment Plan Details</h2>
-                                <br>
-                                <div class="uk-form-row parsley-row">
-                                      <label for="gender" class="uk-form-label uk-margin-medium-top"><b>Type of Treatment*</b></label>
-                                      <br>
-                                      <span class="icheck-inline mt-12p">
-                                          <input type="radio" value="full" name="treatment_type" id="treat_full" data-md-icheck />
-                                          <label for="treat_full" class="inline-label">Full</label>
-                                      </span>
-                                      <span class="icheck-inline">
-                                          <input type="radio" value="minimum" name="treatment_type" id="treat_min" data-md-icheck />
-                                          <label for="treat_min" class="inline-label">Minimum</label>
-                                      </span>
-                                      <span class="icheck-inline">
-                                          <input type="radio" value="aligners" name="treatment_type" id="treat_aligner" data-md-icheck />
-                                          <label for="treat_aligner" class="inline-label">Per Aligners</label>
-                                      </span>
-                                  </div>
+        <?php if(empty($getAcceptedPatientPlan)){ ?>
+            <?php if($getSingleTreatmentPlan->pre_status == 0 && $getSingleTreatmentPlan->status == 1): ?>
+                 <div class="md-card uk-margin-medium-bottom">
+                    <div class="md-card-content" style="margin-top:33px;  padding-top:0px !important; padding-bottom:0px !important;">
+                        <form method="POST" action="<?= site_url('doctor/submitPlanDetails/').$getSingleTreatmentPlan->id; ?>" enctype="multipart/form-data">
+                        <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-medium-1-1">
+                                    <h2 class="pt-20p">Treatment Plan Details</h2>
+                                    <br>
+                                    <div class="uk-form-row parsley-row">
+                                          <label for="gender" class="uk-form-label uk-margin-medium-top"><b>Type of Treatment*</b></label>
+                                          <br>
+                                          <span class="icheck-inline mt-12p">
+                                              <input type="radio" value="full" name="treatment_type" id="treat_full" data-md-icheck />
+                                              <label for="treat_full" class="inline-label">Full</label>
+                                          </span>
+                                          <span class="icheck-inline">
+                                              <input type="radio" value="minimum" name="treatment_type" id="treat_min" data-md-icheck />
+                                              <label for="treat_min" class="inline-label">Minimum</label>
+                                          </span>
+                                          <span class="icheck-inline">
+                                              <input type="radio" value="aligners" name="treatment_type" id="treat_aligner" data-md-icheck />
+                                              <label for="treat_aligner" class="inline-label">Per Aligners</label>
+                                          </span>
+                                      </div>
 
-                                  <div class="uk-grid uk-margin-medium-top">
-                                      <div class="uk-width-medium-1-3">
-                                            <div class="uk-form-row parsley-row">
-                                              <label for="gender" class="uk-form-label uk-margin-medium-top"><b>Type of Sheet: Upper*</b></label>
-                                              <br>
-                                              <span class="icheck-inline mt-12p">
-                                                  <input type="radio" value="upper" name="type_upper" id="type_upper" data-md-icheck />
-                                                  <label for="type_upper" class="inline-label">PUT Sheet Duo</label>
-                                              </span>
-                                             <!--  <span class="icheck-inline">
-                                                  <input type="radio" value="1" name="ipr_performed" id="val_radio_female" data-md-icheck />
-                                                  <label for="val_radio_female" class="inline-label">Yes</label>
-                                              </span> -->
+                                      <div class="uk-grid">
+                                          <div class="uk-width-medium-1-3  uk-margin-medium-top">
+                                                <div class="uk-form-row parsley-row">
+                                                  <label for="gender" class="uk-form-label uk-margin-medium-top"><b>Type of Sheet: Upper*</b></label>
+                                                  <br>
+                                                  <span class="icheck-inline mt-12p">
+                                                      <input type="radio" value="upper" name="type_upper" id="type_upper" data-md-icheck />
+                                                      <label for="type_upper" class="inline-label">PUT Sheet Duo</label>
+                                                  </span>
+                                                 <!--  <span class="icheck-inline">
+                                                      <input type="radio" value="1" name="ipr_performed" id="val_radio_female" data-md-icheck />
+                                                      <label for="val_radio_female" class="inline-label">Yes</label>
+                                                  </span> -->
+                                              </div>
+                                              
                                           </div>
-                                          
-                                      </div>
-                                      <div class="uk-width-medium-2-3">
-                                            <div class="uk-width-medium-1-2">
-                                                <div class="md-input-wrapper"><label class="label-p" for="upper_aligners"><b>Number of ALigners Req</b><span class="req">*</span></label><input style="border-radius: 10px !important;" type="text" name="upper_aligners" id="upper_aligners" class="md-input demoInputBox  input-border" placeholder="Type the Number of ALigners"><span class="md-input-bar"></span></div>
-                                                
-                                            </div>
-                                      </div>
-                                  </div>
-
-                                  <div class="uk-grid uk-margin-medium-top uk-margin-medium-bottom">
-                                      <div class="uk-width-medium-1-3">
-                                            <div class="uk-form-row parsley-row">
-                                              <label for="gender" class="uk-form-label uk-margin-medium-top"><b>Type of Sheet: Lower*</b></label>
-                                              <br>
-                                              <span class="icheck-inline mt-12p">
-                                                  <input style="border-radius: 10px !important;" type="radio" value="lower" name="type_lower" id="type_lower" data-md-icheck />
-                                                  <label for="type_lower" class="inline-label">PUT Sheet Duo</label>
-                                              </span>
-                                             <!--  <span class="icheck-inline">
-                                                  <input type="radio" value="1" name="ipr_performed" id="val_radio_female" data-md-icheck />
-                                                  <label for="val_radio_female" class="inline-label">Yes</label>
-                                              </span> -->
+                                          <div class="uk-width-medium-2-3  uk-margin-medium-top">
+                                                <div class="uk-width-medium-1-2">
+                                                    <div class="md-input-wrapper"><label class="label-p" for="upper_aligners"><b>Number of ALigners Req</b><span class="req">*</span></label><input style="border-radius: 10px !important;" type="text" name="upper_aligners" id="upper_aligners" class="md-input demoInputBox  input-border" placeholder="Type the Number of ALigners"><span class="md-input-bar"></span></div>
+                                                    
+                                                </div>
                                           </div>
-                                          
                                       </div>
-                                        <div class="uk-width-medium-2-3">
-                                            <div class="uk-width-medium-1-2">
-                                                <div class="md-input-wrapper"><label class="label-p" for="lower_aligners"><b>Number of ALigners Req</b><span class="req">*</span></label><input style="border-radius: 10px !important;" type="text" name="lower_aligners" id="lower_aligners" class="md-input demoInputBox  input-border" placeholder="Type the Number of ALigners"><span class="md-input-bar"></span></div>
-                                                
-                                            </div>
-                                      </div>
-                                  </div>
 
-                                  <div class="uk-grid uk-margin-medium-bottom">
-                                      <div class="uk-width-1-1 uk-flex uk-flex-right">
-                                          <button href="" type="submit" class="uk-margin-small-top md-btn md-btn-primary add-pay-btn md-btn-wave-light waves-effect waves-button waves-light buttonStyling"> Done
-                                            </button>
+                                      <div class="uk-grid uk-margin-medium-bottom">
+                                          <div class="uk-width-medium-1-3 uk-margin-medium-top ">
+                                                <div class="uk-form-row parsley-row">
+                                                  <label for="gender" class="uk-form-label uk-margin-medium-top"><b>Type of Sheet: Lower*</b></label>
+                                                  <br>
+                                                  <span class="icheck-inline mt-12p">
+                                                      <input style="border-radius: 10px !important;" type="radio" value="lower" name="type_lower" id="type_lower" data-md-icheck />
+                                                      <label for="type_lower" class="inline-label">PUT Sheet Duo</label>
+                                                  </span>
+                                                 <!--  <span class="icheck-inline">
+                                                      <input type="radio" value="1" name="ipr_performed" id="val_radio_female" data-md-icheck />
+                                                      <label for="val_radio_female" class="inline-label">Yes</label>
+                                                  </span> -->
+                                              </div>
+                                              
+                                          </div>
+                                            <div class="uk-width-medium-2-3 uk-margin-medium-top">
+                                                <div class="uk-width-medium-1-2">
+                                                    <div class="md-input-wrapper"><label class="label-p" for="lower_aligners"><b>Number of ALigners Req</b><span class="req">*</span></label><input style="border-radius: 10px !important;" type="text" name="lower_aligners" id="lower_aligners" class="md-input demoInputBox  input-border" placeholder="Type the Number of ALigners"><span class="md-input-bar"></span></div>
+                                                    
+                                                </div>
+                                          </div>
                                       </div>
-                                  </div>
+
+                                      <div class="uk-grid uk-margin-medium-bottom">
+                                          <div class="uk-width-1-1 uk-flex uk-flex-right">
+                                              <button href="" type="submit" class="uk-margin-small-top md-btn md-btn-primary add-pay-btn md-btn-wave-light waves-effect waves-button waves-light buttonStyling"> Done
+                                                </button>
+                                          </div>
+                                      </div>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        <?php endif; ?>
-
-
-        <?php if($pre_status == null && $status == null): ?>
-        <!-- Treatment Rejected Modify -->
-        <?php if($getSingleTreatmentPlan->pre_status == 0 && $getSingleTreatmentPlan->status == 2): ?>
-            <div class="md-card uk-margin-medium-bottom">
-                <div class="md-card-content" style="margin-top:33px;  padding-top:0px !important; padding-bottom:0px !important;">
-                    <form method="POST" action="<?= site_url('doctor/submitRejectedPlanDetails/').$getSingleTreatmentPlan->id; ?>" enctype="multipart/form-data">
-                    <div class="uk-grid" data-uk-grid-margin>
-                        <div class="uk-width-1-1" style="margin: 10px 3px;">
-                            <div class="">
-                                <label class="label-p" for="exampleFormControlFile1"><b style="font-size:24px;">Specify the changes required & Reason for Declining the plan*</b></label><br><br>
-                                <!-- <label for="message">Message (20 chars min, 100 max)</label> -->
-                                <textarea placeholder="Enter here" class="md-input input-border" name="rejected_reason" cols="10" rows="8" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-validation-threshold="10" data-parsley-minlength-message = "Come on! You need to enter at least a 20 caracters long comment.."></textarea>
-                            </div>
-                        </div>
-                          <div class="uk-width-1-1 uk-flex uk-flex-right uk-margin-medium-top uk-margin-large-bottom">
-                              <button type="submit" class="uk-margin-small-top md-btn md-btn-primary add-pay-btn md-btn-wave-light waves-effect waves-button waves-light buttonStyling"> Done
-                                </button>
-                          </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
-            </div>
-        <?php endif; ?>
-        <?php endif; ?>
+            <?php endif; ?>
+        <?php } ?>
 
 
-        <?php if($pre_status == null && $status == null): ?>
+        <!-- Treatment Rejected Modify -->
+        <?php if(empty($getAcceptedPatientPlan)){ ?>
+            <?php if($getSingleTreatmentPlan->pre_status == 0 && $getSingleTreatmentPlan->status == 2): ?>
+                <div class="md-card uk-margin-medium-bottom">
+                    <div class="md-card-content" style="margin-top:33px;  padding-top:0px !important; padding-bottom:0px !important;">
+                        <form method="POST" action="<?= site_url('doctor/submitRejectedPlanDetails/').$getSingleTreatmentPlan->id; ?>" enctype="multipart/form-data">
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-1-1" style="margin: 10px 3px;">
+                                <div class="">
+                                    <label class="label-p" for="exampleFormControlFile1"><b style="font-size:24px;">Specify the changes required & Reason for Declining the plan*</b></label><br><br>
+                                    <!-- <label for="message">Message (20 chars min, 100 max)</label> -->
+                                    <textarea placeholder="Enter here" class="md-input input-border" name="rejected_reason" cols="10" rows="8" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-validation-threshold="10" data-parsley-minlength-message = "Come on! You need to enter at least a 20 caracters long comment.."></textarea>
+                                </div>
+                            </div>
+                              <div class="uk-width-1-1 uk-flex uk-flex-right uk-margin-medium-top uk-margin-large-bottom">
+                                  <button type="submit" class="uk-margin-small-top md-btn md-btn-primary add-pay-btn md-btn-wave-light waves-effect waves-button waves-light buttonStyling"> Done
+                                    </button>
+                              </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php } ?>
+
+
+        <!-- Nothing -->
+        <?php if(empty($getAcceptedPatientPlan)){ ?>
             <?php if($getSingleTreatmentPlan->pre_status == 0 && $getSingleTreatmentPlan->status == 0): ?>
-                  
                 <div class="md-card uk-margin-medium-bottom">
                     <div class="md-card-content" style="margin-top:33px;  padding-top:0px !important; padding-bottom:0px !important;">
                         <div class="uk-grid uk-flex-middle" data-uk-grid-margin>
-                            <div class="uk-width-medium-3-4 uk-margin-medium-top uk-margin-medium-bottom">
+                            <div class="uk-width-medium-1-2 uk-margin-medium-top uk-margin-medium-bottom">
                                     <p class="text-black">Lorem ipsum dolo sit amet consectetur adipisicing elit. </p>
                             </div>
-                            <div class="uk-width-medium-1-4 uk-margin-medium-top uk-margin-medium-bottom">
+                            <div class="uk-width-medium-1-2 uk-margin-medium-top uk-margin-medium-bottom">
 
-                                <div class="uk-margin-small-left">
+                                <div class="uk-margin-small-left uk-flex uk-flex-right">
                                     <a class="uk-margin-small-top md-btn deleteBorder userDataBackground themeTextColor btnSettings md-btn-success md-btn-wave-light waves-effect waves-button waves-light btnDelete" href="<?php echo base_url('doctor/rejectTreatmentPlan/').$getSingleTreatmentPlan->id; ?>">Reject</a>
                                     &nbsp; &nbsp; &nbsp;&nbsp;
                                     <a class="uk-margin-small-top md-btn buttonStyling accept-btn" href="<?php echo base_url('doctor/acceptTreatmentPlan/').$getSingleTreatmentPlan->id; ?>">&nbsp;Accept&nbsp;</a>
@@ -418,7 +418,8 @@
                 </div>
 
             <?php endif; ?> 
-        <?php endif; ?>
+        <?php } ?>
+
 
 
     </div>

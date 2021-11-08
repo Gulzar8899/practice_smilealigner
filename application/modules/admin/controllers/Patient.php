@@ -30,20 +30,22 @@ class Patient extends MY_Controller
      */
     public function patientListing()
     {
-        $data['billing_address'] = $this->Patient_model->getAllBillingAddress();
         $data['admin_data']    = $this->adminData;
         $data['patientList'] = $this->Patient_model->getPatientList();
         $allPatientList=  $data['patientList'];
-        $patient_data_array = array();
-		for($i=0;$i<count($allPatientList); $i++){   
+		$patient_data_array = array();
+		for($i=0;$i<count($allPatientList); $i++){
 			$chkpt_id = $allPatientList[$i]['pt_id'];
 			$singleData = $allPatientList[$i];
 			$single_product_data =  $this->Patient_model->getPatientPhotosByID($chkpt_id);
 			$singleData['patient_photos'] = $single_product_data;
 			$patient_data_array[] = $singleData;
-        }
+
+		}
 		$data['allPatientListData'] = $patient_data_array;
         $data['shipping_address'] = $this->Admin_model->getDoctorShippingAddress();
+
+        
         $this->load->view('elements/admin_header',$data);
         $this->load->view('admin_topbar',$data);
         $this->load->view('admin_sidebar',$data);
@@ -70,8 +72,7 @@ class Patient extends MY_Controller
         $data['treatment_data'] = $this->Admin_model->getTreatmentData();
         $data['treatment_case_data'] = $this->Admin_model->getTreatmentCaseData();
         $data['arch_data'] = $this->Admin_model->getArchData();
-        $data['shipping_address'] = $this->Admin_model->getDoctorShippingAddress();
-        
+
         $this->load->view('elements/admin_header',$data);
         $this->load->view('admin_topbar',$data);
         $this->load->view('admin_sidebar',$data);

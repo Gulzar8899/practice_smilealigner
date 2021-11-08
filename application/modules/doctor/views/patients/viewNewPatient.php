@@ -23,7 +23,8 @@
             </div>
             <div class="uk-width-medium-3-5 uk-margin-small-top" style="display: block; justify-content:end;">
                     
-                    <?php $i=0; ?>
+                   <div style="text-align: right;">
+                        <?php $i=0; ?>
                     <?php foreach($getPatientTreatmentPlans as $treatmentPlans): ?>
                     <?php if($treatmentPlans->seen == 0): ?>
                         <?php if($i == 0): ?>
@@ -36,9 +37,10 @@
                     <a class="uk-margin-small-top md-btn backViewSetting backbtnSetting borderSetting userDataBackground themeTextColor btnSettings md-btn-success md-btn-wave-light waves-effect waves-button waves-light" href="<?php echo base_url('doctor/viewTreatmentPlan/').$patientData['pt_id']; ?>"><img src="<?php echo base_url('assets/images/eye-icon.svg'); ?>">&nbsp;&nbsp;View Treatment Plans</a>
                     
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="<?= base_url('treatmentplanner/patient/editPatient/').$patientData['pt_id']; ?>" style="margin-right: 15px !important;" class="uk-margin-small-top md-btn md-btn-primary add-pay-btn md-btn-wave-light waves-effect waves-button waves-light buttonStyling"> <img src="<?php echo base_url('assets/images/edit-user-icon.svg'); ?>" alt="">
+                    <a href="<?= base_url('doctor/editPatient/').$patientData['pt_id']; ?>" style="margin-right: 15px !important;" class="uk-margin-small-top md-btn md-btn-primary add-pay-btn md-btn-wave-light waves-effect waves-button waves-light buttonStyling"> <img src="<?php echo base_url('assets/images/edit-user-icon.svg'); ?>" alt="">
                               Edit Patient Profile
                     </a>
+                   </div>
 
             </div>
         </div>
@@ -116,6 +118,18 @@
                                             </span>
 
                                         </h2>
+
+                                        <?php if(!empty($getAcceptedPatientPlan)){ ?>
+                                            <span class="req-accept-status"><img src="<?php echo base_url('assets/images/green-ellipse.svg'); ?>">&nbsp;&nbsp;&nbsp;Accepted</span>
+                                        <?php }elseif(!empty($getRejectedPatientPlan)){ ?>
+                                            <span class="req-reject-status"><img src="<?php echo base_url('assets/images/red-ellipse.svg'); ?>">&nbsp;&nbsp;&nbsp;Rejected</span>
+                                        <?php }elseif(!empty($getModifyAccPatientPlan) || !empty($getModifyAccPatientPlan)){ ?>
+
+                                            <span class="req-modify-status"><img src="<?php echo base_url('assets/images/blue-ellipse.svg'); ?>">&nbsp;&nbsp;&nbsp;Modify</span>
+                                        <?php }else{ ?>
+                                            <span class="req-pending-status"><img src="<?php echo base_url('assets/images/yellow-ellipse.svg'); ?>">&nbsp;&nbsp;&nbsp;Pending</span>   
+                                        <?php } ?>
+
                                        <!--   <span class="req-reject-status"><img src="http://localhost/smilealigners/assets/images/reject-cross-icon.svg">&nbsp;&nbsp;&nbsp;Rejected</span> -->
                                       <!--  <span class="req-accept-status"><img src="http://localhost/smilealigners/assets/images/green-ellipse.svg">&nbsp;&nbsp;&nbsp;Accepted</span> -->
                                     </div>
@@ -193,9 +207,55 @@
                                             <div class="uk-width-large-4-10">
                                                 <span class="themeTextColor"><b>Treatment Plan</b></span>
                                             </div>
-                                            <div class="uk-width-large-6-10">
+                                            <!-- <div class="uk-width-large-6-10">
                                                 <span><?= ($patientData['pt_treatment_plan'] != '') ? $patientData['pt_treatment_plan'] : 'N/A'; ?></span>
+                                            </div> -->
+                                            <!-- Check if Array Empty -->
+                                        <?php if(!empty($getPatientTreatmentPlans)){ ?>
+
+                                            <?php 
+                                                foreach($getPatientTreatmentPlans as $plans){
+                                                    if($plans->pre_status == 1 && $plans->status == 1){
+                                                        $planID = $plans->id;
+                                                    }
+                                                    if($plans->pre_status == 1 && $plans->status == 2){
+                                                        $rejectedPlanID = $plans->id;
+                                                    }
+                                                    $patientID = $plans->patient_id;
+                                                }
+                                             ?>
+
+                                            <?php if(!empty($getAcceptedPatientPlan)){ ?>
+
+                                                <div class="uk-width-large-6-10">
+                                                    <span><a href="<?php echo base_url('doctor/viewTreatmentPlanDetails/'.$getAcceptedPatientPlan->id) ?>" class="text-black">View Accepted Treatment Plan</a></span>
+                                                </div>
+
+                                            <?php }elseif(!empty($getRejectedPatientPlan)){ ?>
+                                                  <div class="uk-width-large-6-10">
+                                                        <span><a href="<?php echo base_url('doctor/viewTreatmentPlanDetails/'.$rejectedPlanID) ?>" class="text-black">View Rejected Treatment Plan</a></span>
+                                                    </div>
+
+                                            <?php }elseif(!empty($getModifyAccPatientPlan) || !empty($getModifyAccPatientPlan)){ ?>
+                                                <div class="uk-width-large-6-10">
+                                                    <span><a href="<?php echo base_url('doctor/viewPlan/'.$patientID) ?>" class="text-black">View Treatment Plan</a></span>
+                                                </div>
+
+                                            <?php }else{ ?>
+                                                <div class="uk-width-large-6-10">
+                                                    <span><a href="<?php echo base_url('doctor/viewPlan/'.$patientID) ?>" class="text-black">View Treatment Plan</a></span>
+                                                </div>
+                                            <?php } ?>
+
+
+                                        <?php }else{ ?>
+
+                                            <div class="uk-width-large-6-10">
+                                                <span><?= 'N/A'; ?></span>
                                             </div>
+
+                                        <?php } ?>
+
                                         </div>
                                         <div class="uk-grid pt-card-pd" data-uk-grid-margin>
                                             <div class="uk-width-large-4-10">
@@ -366,52 +426,83 @@
                                        <!--  <button class="accordion toggle accordian-br" id="fold"><span class=""><b id="fold_p" class="neutral-black">View</b></span>
                                             <a><img style="float: right;padding:5px;" id="image" src="<?php echo site_url('assets/images/accordian_arrow.svg'); ?>"></a>
                                         </button> -->
-                                        <div class="">
-                                             <div class="uk-accordion" data-uk-accordion>
 
-                                                <h3 class="uk-accordion-title" style="background: rgb(237 237 237);"><b>View</b></h3>
-                                                <div class="uk-accordion-content">
-                                                    <p class="mb-5p"><b class="neutral-black">Intra Oral | OPG | Lateral</b></p>
-                                                     <div><div class="plan-info uk-flex uk-flex-middle" style="background-color:#FFFFFF!important;">
-
-                                                        
+                                        <?php $oral_opg_lateral_count=0; ?>
+                                        <?php $stl_count=0; ?>
+                                        <?php $ipr_count=0; ?>
+                                        <?php foreach($patientData['patient_photos'] as $photos){
+                                            if($photos['key'] == 'Lateral C Images' || $photos['key'] == 'OPG Images' || $photos['key'] == 'Intra Oral Images'){
+                                                $oral_opg_lateral_count++;
+                                            }elseif($photos['key'] == 'STL File(3D File)'){
+                                                $stl_count++;
+                                            }elseif($photos['key'] == 'IPR'){
+                                                 $ipr_count++;
+                                            }
+                                        }
+                                        ?>
+                                    <div class="">
+                                        <div class="uk-accordion" data-uk-accordion id="my-accordion">
+                                        <h3 class="uk-accordion-title" style="background: rgb(237 237 237);"><b>View</b></h3>
+                                            <div class="uk-accordion-content">
+                                                <p class="mb-5p"><b class="neutral-black">Intra Oral | OPG | Lateral</b></p>
                                                 <div>
-                                                    <span class="pl-10p">Photos(15)</span>
-                                                </div>
-                                                <div>
-                                                    <a class="pr-10p get-images"  data-id="<?php echo $patientData['pt_id']; ?>" data-type="oral_opg_lateral"><img src="<?php echo site_url('assets/images/direct-download.svg'); ?>"></a>
-                                                </div>
-                                            </div></div>
+                                                    <div class="plan-info uk-flex uk-flex-middle" style="background-color:#FFFFFF!important;">
+                                                        <div>
+                                                        <?php $oral_opg_lateral_count=0; ?>
+                                                        <?php $stl_count=0; ?>
+                                                        <?php $ipr_count=0; ?>
+                                                        <?php foreach($patientData['patient_photos'] as $photos){
+                                                            if($photos['key'] == 'Lateral C Images' || $photos['key'] == 'OPG Images' || $photos['key'] == 'Intra Oral Images'){
+                                                                $oral_opg_lateral_count++;
+                                                            }elseif($photos['key'] == 'STL File(3D File)'){
+                                                                $stl_count++;
+                                                            }elseif($photos['key'] == 'IPR'){
+                                                                 $ipr_count++;
+                                                            }
+                                                        } 
+                                                        ?>
+                                                         <a class="pr-10p get-images text-black"  data-id="<?php echo $patientData['pt_id']; ?>" data-type="oral_opg_lateral"><span class="pl-10p">Photos(<?= $oral_opg_lateral_count; ?>)</span></a>
+                                                        </div>
+                                                        <div>
+                                                             <a href="<?= site_url('doctor/getdownloadPostFile/oral_opg_lateral/').$patientData['pt_id']; ?>" class="uk-flex uk-flex-between pr-10p">
+                                                                <span><img src="<?= site_url('assets/images/direct-download.svg') ?>"></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                             <p class="mb-5p"><b class="neutral-black">STL | DCM | PLY Files</b></p>
                                             <div><div class="plan-info uk-flex uk-flex-middle" style="background-color:#FFFFFF!important;">
                                                 <div>
-                                                    <span class="pl-10p ">Files(3)</span>
+                                                     <a class="pr-10p stl_preview text-black"  data-id="<?php echo $patientData['pt_id']; ?>" data-type="stl_file"><span class="pl-10p">Files(<?= $stl_count; ?>)</span></a>
+                                                    
                                                 </div>
                                                 <div>
-                                                    
+                                                    <a href="" class="uk-flex uk-flex-between pr-10p">
+                                                        <span><img src=""></span>
+                                                    </a>
                                                 </div>
                                             </div></div>
                                             <p class="mb-5p"><b class="neutral-black">IPR Files</b></p>
                                             <div><div class="plan-info uk-flex uk-flex-middle" style="background-color:#FFFFFF!important;">
-                                                <div>
-                                                    <span class="pl-10p ">IPR file(3)</span>
+                                                <div> 
+                                                    <a class="pr-10p get-images text-black"  data-id="<?php echo $patientData['pt_id']; ?>" data-type="ipr_file"> <span class="pl-10p ">IPR file(<?= $ipr_count; ?>)</span></a>
+                                                   
                                                 </div>
                                                 <div>
-                                                    <a class="pr-10p"><img src="<?php echo site_url('assets/images/direct-download.svg'); ?>"></a>
+                                                    <a href="<?= site_url('doctor/getdownloadPostFile/ipr_files/').$patientData['pt_id']; ?>" class="uk-flex uk-flex-between pr-10p">
+                                                        <span><img src="<?= site_url('assets/images/direct-download.svg') ?>"></span>
+                                                    </a>
                                                 </div>
                                             </div></div>
-<!--                                             <p class="mb-5p"><b class="neutral-black">Invoice</b></p>
-                                            <div><div class="plan-info uk-flex uk-flex-middle uk-margin-medium-bottom" style="background-color:#FFFFFF!important;">
-                                                <div>
-                                                    <span class="pl-10p ">Invoice file(3)</span>
-                                                </div>
-                                                <div>
-                                                    <a class="pr-10p"><img src="<?php echo site_url('assets/images/direct-download.svg'); ?>"></a>
-                                                </div>
-                                            </div></div> -->
+
 
                                                 </div>
+
+                                               
+
                                             </div>
+
+                                           
                                         </div>
 
 
@@ -474,7 +565,73 @@
                                     </div>
                                 </div>  
                                     </div> -->
-                               
+
+                                    <?php if(!empty($getAcceptedPatientPlan)){ ?>
+
+                                            <!-- Aligners -->
+                                              <div class="payment-sec-l">
+                                                <div class="ml-12p mr-12p">
+                                                     <div class="uk-width-medium-1-1">
+                                                        <div class="sec-two">
+                                                            <h5>Number Of Alligners</h5>
+                                                            <h1><?= $getAcceptedPatientPlan->upper.'U '. $getAcceptedPatientPlan->lower.'L' ?></h1>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="uk-width-medium-1-1">
+                                                        <div class="sec-two">
+                                                            <h5>Number Of Alligners Required</h5>
+                                                            <h1><?= $plan_details->upper_aligners.'U '. $plan_details->lower_aligners.'L' ?></h1>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="uk-width-medium-1-1">
+                                                        <div class="sec-two">
+                                                            <h5>Number Of Alligners Dispatched</h5>
+                                                            <h1>5U 10L</h1>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="uk-width-medium-1-1">
+                                                        <div class="sec-two">
+                                                            <h5>Further Alligners</h5>
+                                                            <h1><?= $getAcceptedPatientPlan->upper-$plan_details->upper_aligners.'U '. $getAcceptedPatientPlan->lower-$plan_details->lower_aligners.'L' ?></h1>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <!-- Left Side Treatment Plan -->
+                                             <?php $dt = new DateTime($getAcceptedPatientPlan->created_at);?>
+                                             <div class="uk-panel uk-panel-box view-treatment-d" style=" padding:10px;margin: 20px 16px !important;">
+                                                <span class="uk-flex uk-flex-between" style="align-items:center;">
+                                                        <p class="m-0p"><?= $dt->format('d F').', '.$dt->format('Y'); ?></p>
+                                                        <span class="req-accept-status"><img src="<?php echo base_url('assets/images/tick-icon.svg'); ?>">&nbsp;&nbsp;&nbsp;Accepted</span>
+                                                    </span>
+
+                                                    <span class="uk-flex uk-flex-between" style="align-items:center; margin-top: 15px;">
+                                                        <h5 style="margin:0px;"><?= $getAcceptedPatientPlan->title; ?></h5>
+                                                        <a class="" href="<?php echo base_url('doctor/viewTreatmentPlanDetails/'.$getAcceptedPatientPlan->id); ?>"><img src="<?php echo base_url('assets/images/view-plan-details.svg'); ?>"></a>
+                                                    </span>
+                                            </div>
+                                        
+                                <?php }elseif(!empty($getRejectedPatientPlan)){ ?>
+                                       
+                                             <?php $dt = new DateTime($getRejectedPatientPlan->created_at);?>
+                                             <div class="uk-panel uk-panel-box view-treatment-d" style=" padding:10px;margin: 20px 16px !important;">
+                                                <span class="uk-flex uk-flex-between" style="align-items:center;">
+                                                        <p class="m-0p"><?= $dt->format('d F').', '.$dt->format('Y'); ?></p>
+                                                        <span class="req-reject-status"><img src="<?php echo base_url('assets/images/red-ellipse.svg'); ?>">&nbsp;&nbsp;&nbsp;Rejected</span>
+                                                    </span>
+
+                                                    <span class="uk-flex uk-flex-between" style="align-items:center; margin-top: 15px;">
+                                                        <h5 style="margin:0px;"><?= $getRejectedPatientPlan->title; ?></h5>
+                                                        <a class="" href="<?php echo base_url('doctor/viewTreatmentPlanDetails/'.$getRejectedPatientPlan->id); ?>"><img src="<?php echo base_url('assets/images/view-plan-details.svg'); ?>"></a>
+                                                    </span>
+                                            </div>
+                                        
+                                <?php }?>
 
                             </div>
                         </div>
@@ -498,7 +655,6 @@
         <?php endforeach; ?>
     </div>
 </div>
-         <!--Image Preview MODEL-->
         <div class="uk-modal uk-close-btn images_modal" id="images_modal">
             <div class="uk-modal-dialog ">
                 <div class="uk-modal-header">
@@ -513,6 +669,21 @@
                         <!--  <div  class="uk-width-medium-1-4" >
                         </div> -->
                     </div>
+
+                    <h3 class="img-preview-heading-opg mb-0p">OPG Images</h3><br>
+
+                     <div class="uk-grid" id="show_opg_images">
+                        <!--  <div  class="uk-width-medium-1-4" >
+                        </div> -->
+                    </div>
+    
+                    <h3 class="img-preview-heading-lateral mb-0p">Lateral C Images</h3><br>
+
+                    <div class="uk-grid" id="show_lateral_images">
+                        <!--  <div  class="uk-width-medium-1-4" >
+                        </div> -->
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -528,8 +699,16 @@
                     <button id="stl_preview_modal_close" class="uk-close uk-close-btn" style="font-size: 25px; float:right;top: 2%;right: 2%;position: absolute;" type="button" uk-close></button>
                     </h5>
                 </div>
-                <div class="modal-body" id="stl_preview_modal_body" style="height :100%; overflow-y:auto;">
+                <div class="modal-body" id="stl_preview_modal_body" style="height :100%;">
+
                     <div class="uk-grid" id="show_stl"></div>
+
+                    <div style="overflow-x:auto;">
+                        <div class="uk-grid show_stl_icon">
+                        
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -563,22 +742,43 @@
         // var imageType = 'Intra Oral Images';
         var img_url = "<?php echo site_url();?>assets/uploads/images/";
         var statis_img_url = "<?php echo site_url();?>assets/images/";
+
+        var img_site_url =  "<?php echo site_url();?>";
         // alert(patientID);
         $.ajax({
-            url:"<?php echo base_url();?>treatmentplanner/Patient/getPatientImagetype/",
+            url:"<?php echo base_url();?>doctor/getPatientImagetype/",
             type: 'GET',
             data: {'id':patientID, 'imageType':imageType},
             dataType: 'json',
             success: function(response) {
                 console.log(response);
                 $('#show_images').html('');
+                $('#show_opg_images').html('');
+                $('#show_lateral_images').html('');
+                $('.img-preview-heading-opg').html('');
+                $('.img-preview-heading-lateral').html('');
+
                 $.each(response,function(index,data){
 
                 if(doesFileExist(img_url+data['img'])){
 
                     if(data['key'] == 'Intra Oral Images' ||data['key'] == 'OPG Images' ||data['key'] == 'Lateral C Images' ){
-                        $('.img-preview-heading').text( "Intra Oral/ OPG/ Lateral C Images" );
-                        $('#show_images').append('<div style="margin-top: 20px;"  class="uk-width-medium-1-4"><div style="position:relative;"><img class="image-preview-popup-d" src="'+img_url+data['img']+'"><span class="image-preview-popup-down"><img src="'+statis_img_url+'download-arrow.svg"></span></div></div>');
+                        if( data['key'] == 'Intra Oral Images'){
+                        $('.img-preview-heading').text( "Intra Oral Images" );
+
+                             $('#show_images').append('<div style="margin-top: 20px;"  class="uk-width-medium-1-4"><div style="position:relative;"><img class="image-preview-popup-d" src="'+img_url+data['img']+'"><span class="image-preview-popup-down"><a href="'+img_site_url+'treatmentplanner/patient/getdownloadSinglePostFile/'+data['photos_id']+'"><img src="'+statis_img_url+'download-arrow.svg"></a></span></div></div>');
+                        }
+                        if( data['key'] == 'OPG Images'){
+                        $('.img-preview-heading-opg').text( "OPG Images" );
+
+                            $('#show_opg_images').append('<div style="margin-top: 20px;"  class="uk-width-medium-1-4"><div style="position:relative;"><img class="image-preview-popup-d" src="'+img_url+data['img']+'"><span class="image-preview-popup-down"><a href="'+img_site_url+'treatmentplanner/patient/getdownloadSinglePostFile/'+data['photos_id']+'"><img src="'+statis_img_url+'download-arrow.svg"></a></span></div></div>');
+                        }
+                        if( data['key'] == 'Lateral C Images'){
+                        $('.img-preview-heading-lateral').text( "Lateral C Images" );
+
+                            $('#show_lateral_images').append('<div style="margin-top: 20px;"  class="uk-width-medium-1-4"><div style="position:relative;"><img class="image-preview-popup-d" src="'+img_url+data['img']+'"><span class="image-preview-popup-down"><a href="'+img_site_url+'treatmentplanner/patient/getdownloadSinglePostFile/'+data['photos_id']+'"><img src="'+statis_img_url+'download-arrow.svg"></a></span></div></div>');
+
+                        }
                     }else if(data['key'] == 'Scans'){
                         $('.img-preview-heading').text( "Scans Images" );
                         $('#show_images').append('<div style="margin-top: 20px;"  class="uk-width-medium-1-4"><img src="'+img_url+data['img']+'" class="h-100"> </div>');
@@ -608,7 +808,7 @@
                         
                     }else if(data['key'] == 'IPR'){
                         $('.img-preview-heading').text( "IPR Images" );
-                        $('#show_images').append('<div style="margin-top: 20px;"  class="uk-width-medium-1-4"><img src="'+img_url+data['img']+'" class="h-100"> </div>');
+                        $('#show_images').append('<div style="margin-top: 20px;"  class="uk-width-medium-1-4"><div style="position:relative;"><img class="image-preview-popup-d" src="'+img_url+data['img']+'"><span class="image-preview-popup-down"><a href="'+img_site_url+'treatmentplanner/patient/getdownloadSinglePostFile/'+data['photos_id']+'"><img src="'+statis_img_url+'download-arrow.svg"></a></span></div></div>');
                     }else if(data['key'] == 'Invoice'){
                         $('.img-preview-heading').text( "Invoice File" );
                         var html = '<div style="margin-top: 20px;"  class="uk-width-medium-3-6">'
@@ -651,17 +851,21 @@
         e.preventDefault();
         var patientID = $(this).data('id');
         var imageType = $(this).data('type');
+        var static_img_url = "<?php echo base_url();?>assets/images/";
+
         // var imageType = 'Intra Oral Images';
         var img_url = "<?php echo site_url();?>assets/uploads/images/";
         $.ajax({
-            url:"<?php echo base_url();?>treatmentplanner/Patient/getPatientImagetype/",
+            url:"<?php echo base_url();?>doctor/getPatientImagetype/",
             type: 'GET',
             data: {'id':patientID, 'imageType':imageType},
             dataType: 'json',
             success: function(response) {
                 console.log(response);
                 $('.img-preview-heading').html('');
-                // $('#show_stl').html('');
+                $('.img-preview-heading-opg').html('');
+                $('.img-preview-heading-lateral').html('');
+                $('.show_stl_icon').html('');
                 var count = 0;
                 $.each(response,function(index,data){
 
@@ -681,8 +885,25 @@
 
                     $('.img-preview-heading').text('STL File(3D File)');
 
-                    $('#show_stl').append('<div class="uk-width-medium-2-6"><div id="stl_viewer_'+count+'"></div></div>');
+
+                    if(count == 0){
+                        $('.show_stl_icon').append('<div  class="uk-width-medium-1-4 stl-preview-active"><div class="stl-preview-bg"><img class="" src="'+static_img_url+'3d-stl-icon.svg"><br><br><span class="stl-preview-popup-down"><img src="'+static_img_url+'download-arrow.svg"></span></div></div><br><br>');
+                    }else{
+                          $('.show_stl_icon').append('<div class="uk-width-medium-1-4"><div class="stl-preview-bg"><img class="" src="'+static_img_url+'3d-stl-icon.svg"><br><br><span class="stl-preview-popup-down"><img src="'+static_img_url+'download-arrow.svg"></span></div></div><br><br>');
+                    }
+
+
+
+
+                    if(count == 0){
+                        $('#show_stl').append('<div class="uk-width-medium-1-1 stl-view-v" style="display:visible;"><div id="stl_viewer_'+count+'" class="stl_viewer_active"></div></div>');
+                    }else{
+                        $('#show_stl').append('<div class="uk-width-medium-1-1 stl-view-n" style="display:none;"><div id="stl_viewer_'+count+'" class="stl_viewer_active"></div></div>');
+                    }
+
+
                     UIkit.modal('#stl_preview_modal').show();
+
                     var stl_viewer=new StlViewer
                     (
                         document.getElementById("stl_viewer_"+count),
@@ -695,7 +916,7 @@
                     );
                     count++;
                     // location.reload(true);
-                }
+                    }
                 });
             },
             error: function () {

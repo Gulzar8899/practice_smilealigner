@@ -102,11 +102,17 @@ input.inputSetting::placeholder {
 .mt-15p{
   margin-top: 15px !important;
 }
+.mt-20p{
+  margin-top: 20px !important;
+}
 .ml-10p{
   margin-left: 10px !important;
 }
 .p-0p{
   padding: 0px !important;
+}
+.p-5p{
+  padding: 5px !important;
 }
 .pt-0p{
   padding-top: 0px !important;
@@ -222,6 +228,9 @@ input.inputSetting::placeholder {
 }
 
 .border-radius-16p{
+  border-radius: 16px !important;
+}
+.border-radius-15p{
   border-radius: 16px !important;
 }
 .w3-popup{
@@ -1212,6 +1221,11 @@ color: #6D3745 !important;
     justify-content: center;
   }
 }
+@media (min-width:600px) {
+  #dt_tableExport_wrapper .dt-uikit-header .uk-grid>*{
+    padding-left: 0px !important;
+  } 
+}
 /*********** END Custom Switch Button **********/
 
 .flex-property{
@@ -1789,111 +1803,87 @@ input[type=number].md-input{
 	padding: 2px 25px;
 	border-radius: 13px;
 }
-
 .payement-tbl-list .md-card-content{
 	padding: 30px 5px;
 }
-
 .view-payment-h #dt_tableExport_wrapper .dt-uikit-header .uk-grid>*{
-		    padding-left: 25px !important;
-	}
+	padding-left: 25px !important;
+}
+#dt_tableExport_wrapper .dt-uikit-header .uk-grid>*{
+  padding-left: 25px;
+}
+
 /* Payment History Left Section */
 .payment-sec-l .sec-one{
 	padding: 15px 20px;
 	background-color: #EDEDED;
 	border-radius: 10px;
 }
-
 .payment-sec-l .sec-one h3{
 	font-size: 14px;
-    font-family: Lato;
-    font-weight: 700;
+  font-family: Lato;
+  font-weight: 700;
 	margin-bottom: 2px;
-
 }
-
 .payment-sec-l .sec-one p{
 	margin-top: 0px;
-	 font-size: 16px;
-    font-weight: 400;
-    font-family: Lato;
-
+	font-size: 16px;
+  font-weight: 400;
+  font-family: Lato;
 }
-
 .payment-sec-l .sec-one .patient-name{
-    font-size: 20px;
-    font-weight: 200;
-    font-family: Lato;
+  font-size: 20px;
+  font-weight: 200;
+  font-family: Lato;
 }
-
 .payment-sec-l .sec-two{
 	margin-top: 20px;
 	padding: 15px 20px;
 	background-color: #D5AE76;
 	border-radius: 10px;
 }
-
 .payment-sec-l .sec-two h5{
-	    font-size: 14px;
-    color: white;
-    font-family: Lato;
-        font-weight: 500;
+	font-size: 14px;
+  color: white;
+  font-family: Lato;
+  font-weight: 500;
 }
-
 .payment-sec-l .sec-two h1{
-		font-family: Lato;
-    color: white;
-    margin-bottom: 0px;
-    font-size: 24px;
-    text-align: right;
-    font-weight: 400;
+	font-family: Lato;
+  color: white;
+  margin-bottom: 0px;
+  font-size: 24px;
+  text-align: right;
+  font-weight: 400;
 }
-
-
 .view-payment-h .heading_a{
 	font-size: 26px;
 }
-
 .view-payment-h .buttonStyling{
 	padding: 8px 25px;
 }
-/*#add_payment .modal-header{
-	background-image: url("<?php echo base_url('assets/images/invoice-icon.png'); ?>");
-}*/
-
-/* #add_payment .uk-modal-dialog{
-	border-top-left-radius: 9px;
-	border-top-right-radius: 9px;
-} */
-
 #add_payment .uk-modal-dialog .modal-body{
-	    margin-top: 40px;
+	margin-top: 40px;
 }
-
 #add_payment form .payment_amount_label{
-	    position: unset;
+	position: unset;
 }
-
 #add_payment form .payment_amount{
-		margin-top: 10px;
-		border-radius: 22px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: rgba(0, 0, 0, 0.05);
+	margin-top: 10px;
+	border-radius: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
-
 #add_payment form .payment_invoice{
-	    margin: 30px 0px;
+	margin: 30px 0px;
 }
-
 #add_payment .btnBack {
-    padding: 12px 165px;
-
-    margin: 10px 90px;
-        border: 1px solid #56BB6D;
-    color: #56BB6D;
-border-radius: 10px;
+  padding: 12px 165px;
+  margin: 10px 90px;
+  border: 1px solid #56BB6D;
+  color: #56BB6D;
+  border-radius: 10px;
 }
-
 #add_payment .btnNext {
 	background-color: #56BB6D !important;
 	float: none;
@@ -1920,34 +1910,29 @@ border-radius: 10px;
   cursor: pointer;
   text-transform: none;
   width: 100%;
-  /* font-size: 15px; */
-  /* box-shadow: 0px 4px 10px 3px rgb(109 55 69 / 30%); */
 }
-
-
 #accept-doctor-modal #emailID{
-    margin-top: 10px; 
-    padding: 0px;
-    border-radius: 22px;
-    border: 0px solid rgb(0 0 0 / 0%);
-    background-color: rgb(0 0 0 / 0%) !important;
+  margin-top: 10px; 
+  padding: 0px;
+  border-radius: 22px;
+  border: 0px solid rgb(0 0 0 / 0%);
+  background-color: rgb(0 0 0 / 0%) !important;
 }
 #accept-doctor-modal #doctorPassword{
-    margin-top: 10px; 
-    border-radius: 22px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: rgba(0, 0, 0, 0.05);
+  margin-top: 10px; 
+  border-radius: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
-
 #payment-search-form input[type="date"]::-webkit-calendar-picker-indicator {
-    color: rgba(0, 0, 0, 0);
-    opacity: 1;
-    display: block;
-    background: url('../img/calendar-icon.svg') no-repeat;
-    width: 20px;
-    height: 9px;
-    padding-top: 5px;
-    border-width: thin;
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url('../img/calendar-icon.svg') no-repeat;
+  width: 20px;
+  height: 9px;
+  padding-top: 5px;
+  border-width: thin;
 }
 
 /*EDIT PAyemnt Model*/
@@ -2251,11 +2236,14 @@ border-radius: 10px;
   text-decoration: none;
   display: block;
 }
-.filter-dropdown a:hover {background-color: #ddd;}
-.showw {display: block;}
+.filter-dropdown a:hover{
+  background-color: #ddd;
+}
+.showw {
+  display: block;
+}
 #dt_tableExport_wrapper .dt-uikit-header .uk-grid>*{
   padding-right: 0px !important;
-  padding-left: 0px !important;
 }
 .multiaddress-icon{
   display: flex;
@@ -2263,26 +2251,19 @@ border-radius: 10px;
   margin-top: 25px;
   margin-left: 5px;
 }
-
-
 .drop-multiaddress{
   display: flex;
   align-items: center;
 
 }
-
 .drop-multiaddress-icon{
-
   margin-top: 10px;
   margin-left: 15px;
 }
-
-
-
 #password-field .scan-radio-btn input[type='radio']{
-		height: 18px;
-    width: 4%;
-    margin: -4px 5px;
+	height: 18px;
+  width: 4%;
+  margin: -4px 5px;
 }
 #password-field input[type='radio'] {
   -webkit-appearance: none;

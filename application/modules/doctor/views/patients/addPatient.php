@@ -92,45 +92,89 @@
                             <div class="col-md-6">
                             </div>
                         </div>
-                        <div class="uk-grid">
-                            <div class="uk-width-1-1">
-                                <div class="form-group alert-up-pd">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"><b>Images Intra Oral</b></div>
-                                         <div class="panel-body">
-                                            <input id="input-fa-1" name="images_intra_oral[]" class="user_files_images" type="file" multiple="">
+
+                        <!-- <div class="uk-grid">
+                            <div class="uk-width-medium-1-2">
+                                <div class="uk-form-row parsley-row">
+                                    <div class="col-md-3 col-sm-6 col-xs-6 d-flex">
+                                <input type="radio" class="role" id="friends" name="radio_group" value="Friends" onclick="showInputField();">
+                                <label for="friends"><b>&nbsp;&nbsp;Friends</b></label>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-6 d-flex">
+                                 <input type="radio" value="Social Media" class="role" id="social" name="radio_group" onclick="showInputField();">
+                                <label for="social"><b>&nbsp;&nbsp;Social Media</b></label>
+                            </div>
+                            
+                                    <label for="gender" class="uk-form-label"><b>Gender</b><span class="req">*</span></label>
+                                    <span class="icheck-inline" id="radio_check_val">
+                                        <input type="radio" name="pt_type" value="individual" id="individual_radio" data-md-icheck checked />
+                                        <label for="individual_radio" class="inline-label">Individual</label>
+                                    </span>
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="pt_type" value="composite" id="composite_radio" data-md-icheck />
+                                        <label for="composite_radio" class="inline-label">Composite</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div id="show_individual_input">
+                            <div class="uk-grid">
+                                <div class="uk-width-1-1">
+                                    <div class="form-group alert-up-pd">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><b>Images Intra Oral</b></div>
+                                             <div class="panel-body">
+                                                <input id="input-fa-1" name="images_intra_oral[]" class="user_files_images" type="file" multiple="">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div> 
+                                </div> 
+                            </div>
+                            <br>
+                            <div class="uk-grid imageOpgSetting">
+                                <div class="uk-width-1-1">
+                                    <div class="form-group alert-up-pd">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><b>Images OPG</b></div>
+                                            <div class="panel-body">
+                                                <input id="input-fa-2" name="images_opg[]" class="user_files_images" type="file" multiple="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <br>
+                            <div class="uk-grid imageOpgSetting">
+                                <div class="uk-width-1-1">
+                                    <div class="form-group alert-up-pd">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><b>Lateral Ceph. Images</b></div>
+                                            <div class="panel-body">
+                                                <input id="input-fa-3" name="images_lateral_c[]" class="user_files_images" type="file" multiple="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
                         </div>
-                        <br>
-                        <div class="uk-grid imageOpgSetting">
-                            <div class="uk-width-1-1">
-                                <div class="form-group alert-up-pd">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"><b>Images OPG</b></div>
-                                        <div class="panel-body">
-                                            <input id="input-fa-2" name="images_opg[]" class="user_files_images" type="file" multiple="">
+
+                        <div id="show_composite_input">
+                            <div class="uk-grid">
+                                <div class="uk-width-1-1">
+                                    <div class="form-group alert-up-pd">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><b>Upload Composite Image</b></div>
+                                             <div class="panel-body">
+                                                <input id="input-fa-1" name="composite_image[]" class="user_files_images" type="file" multiple="">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div> 
-                        </div>          
+                                </div> 
+                            </div>
+                        </div>
                     </div>
                     <div id="password-field" style="display:none;">
-                        <div class="uk-grid imageOpgSetting">
-                            <div class="uk-width-1-1">
-                                <div class="form-group alert-up-pd">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading"><b>Lateral Ceph. Images</b></div>
-                                        <div class="panel-body">
-                                            <input id="input-fa-3" name="images_lateral_c[]" class="user_files_images" type="file" multiple="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
+                       
                         <div class="uk-grid" data-uk-grid-margin>
                             <div class="uk-width-medium-1-2">
                                 <div class="uk-form-row parsley-row scanImpression">
@@ -139,6 +183,12 @@
                                     <label><input type="radio" name="pt_scan_impression" value="yes"/> Yes</label>
                                 </div>
                             </div>
+                            <div class="uk-width-medium-2-3">
+                                <div class="parsley-row">
+                                    <label class="label-p" for="exampleFormControlFile1"><b>Special Instructions</b></label><br>
+                                    <textarea placeholder="Special Instructions" class="md-input input-border" name="pt_special_instruction" cols="10" rows="8" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-validation-threshold="10" data-parsley-minlength-message = "Come on! You need to enter at least a 20 caracters long comment.." placeholder="Enter Secipal Instructione"></textarea>
+                                </div>
+                            </div>  
                         </div>
                         <br>
                         <div id="div1" class="row imageOpgSetting hide">
@@ -173,6 +223,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="uk-grid" data-uk-grid-margin>
                             <div class="uk-width-medium-1-3 uk-width-large-1-2">
                                 <label class="label-p" for="exampleFormControlFile1"><b>Shipping Address</b></label>
@@ -331,36 +382,6 @@
 function show2(){
   document.getElementById('div1').style.display = 'block';
 }
-// function validate() {
-//     var output = true;
-//     $(".registration-error").html('');
-//     if($("#account-field").css('display') != 'none') {
-//         if(!($("#email").val())) {
-//             output = false;
-//             $("#email-error").html("required");
-//         }   
-//         if(!$("#email").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
-//             $("#email-error").html("invalid");
-//             output = false;
-//         }
-//     }
-
-//     if($("#password-field").css('display') != 'none') {
-//         if(!($("#user-password").val())) {
-//             output = false;
-//             $("#password-error").html("required");
-//         }   
-//         if(!($("#confirm-password").val())) {
-//             output = false;
-//             $("#confirm-password-error").html("Not Matched");
-//         }   
-//         if($("#user-password").val() != $("#confirm-password").val()) {
-//             output = false;
-//             $("#confirm-password-error").html("Not Matched");
-//         }   
-//     }
-//     return output;
-// }
 
 function validate() {
 
@@ -387,6 +408,11 @@ function validate() {
 
     return output;
 }
+
+$("#individual_radio").click(function(){
+    alert(); 
+});
+
 
 $(document).ready(function() {
     $("#next").click(function(){

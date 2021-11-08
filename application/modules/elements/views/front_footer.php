@@ -403,7 +403,7 @@
 						<label><b>References *</b></label>
 					</div>
 					<div class="row mt-4 regiter-radiobtn">
-						 <div class="col-md-3 col-sm-6 col-xs-6 d-flex">
+						 	<div class="col-md-3 col-sm-6 col-xs-6 d-flex">
                                 <input type="radio" class="role" id="friends" name="radio_group" value="Friends" onclick="showInputField();">
                                 <label for="friends"><b>&nbsp;&nbsp;Friends</b></label>
                             </div>

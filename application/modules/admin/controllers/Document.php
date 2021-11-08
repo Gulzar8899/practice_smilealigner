@@ -71,6 +71,11 @@ class Document extends MY_Controller
         }else{
 
             $document_data = $this->Document_model->getDocumentListByID();
+
+
+
+        
+
             $document_data_array = array();
             for($i=0;$i<count($document_data); $i++){
                 $doc_id = $document_data[$i]['doc_id'];
@@ -84,11 +89,10 @@ class Document extends MY_Controller
             $data['documents_data'] = $document_data_array;
 
         } 
-         
-        // echo "<pre>";
-        // print_r($data['documents_data']);
-        // die();
         
+        echo "<pre>";
+        print_r($data['documents_data']);
+        die();
         // print_r($data['documents_data']);die();
         $this->load->view('elements/admin_header',$data);
         $this->load->view('admin_topbar',$data);

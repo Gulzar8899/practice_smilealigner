@@ -306,6 +306,13 @@ class Admin_model extends CI_Model {
 		return $res->result();
 	}
 
+    //   GET Specific Doctor Shipping Address
+    function getSpecificDoctorBillingAddress($id){
+        $this->db->select('*');
+        $this->db->where('doctor_id',$id);
+        $res = $this->db->get('billing_address');
+        return $res->result();
+    }
 
     //  INSERT Billing Address
     function insertBillingAddress($shippingData)
@@ -389,6 +396,13 @@ class Admin_model extends CI_Model {
         return $res->result();
     }
 
+     function getDoctorBillingAddress()
+    {
+        $this->db->select('*');
+        $res = $this->db->get('shipping_address');
+        return $res->result();
+    }
+
     function getDoctorDefaultShippingAddress($doctorID)
     {
         $this->db->select('*');
@@ -456,7 +470,7 @@ class Admin_model extends CI_Model {
     }
 
      // Get All Cities
-    function getPatientListByDoctorID()
+    function getPatientListByDoctorID($doctorID)
     {
         $this->db->select('*');
         // $this->db->where('doctor_id', $doctorID);
@@ -464,13 +478,4 @@ class Admin_model extends CI_Model {
         return $res->result();
     }
 
-
-    function getAllBillingAddress($doctorID)
-    {
-        $this->db->select('*');
-        $this->db->where('doctor_id',$doctorID);
-        $res = $this->db->get('billing_address');
-        return $res->result();
-    }
-    
 }

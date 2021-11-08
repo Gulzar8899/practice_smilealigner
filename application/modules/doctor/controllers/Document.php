@@ -208,4 +208,25 @@ class Document extends MY_Controller
 
     }
 
+    // public function upload()
+    // {
+    //     // code...
+    //     $output = '';  
+    //     $base_url = base_url();
+    //      if(isset($_FILES['file']['name'][0]))  
+    //      {  
+    //           //echo 'OK';  
+    //           foreach($_FILES['file']['name'] as $keys => $values)  
+    //           {  
+
+
+    //                if(move_uploaded_file($_FILES['file']['tmp_name'][$keys], 'assets/uploads/' . $values))  
+    //                {  
+    //                      $output .= '<div class="uk-width-medium-1-4"><img src="'.$base_url.'assets/uploads/'.$values.'" class="h-100" /></div>';  
+    //                }  
+    //           }  
+    //      }  
+    //      echo $output;  
+    // }
+
 }

@@ -149,10 +149,4 @@ class Patient_model extends CI_Model {
         $res = $this->db->get('photos');
         return $res->result_array();   
     }
-      function getAllBillingAddress()
-    {
-        $this->db->select('*');
-        $res = $this->db->get('billing_address');
-        return $res->result();    
-    }
 }

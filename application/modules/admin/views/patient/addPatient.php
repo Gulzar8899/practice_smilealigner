@@ -402,10 +402,10 @@
                         <select id="shipping_address" name="pt_shipping_details">
                             <i class="uk-icon-caret-down"></i>
 
-                               <?php foreach($shipping_address as $shipping){?>
-                                    <?php $street_name = $shipping->street_address.' '.$shipping->country.' '.$shipping->city.' '.$shipping->state.' '.$shipping->zip_code; ?>
-                                     <option value="<?= $country->id;?>"><?= $street_name;?></option>
-                                   <?php } ?>
+                             <!--  <?php foreach($doctor_data as $doctor){?>
+                                     <option value="<?= $doctor->id;?>" selected><?= $doctor->shipping_address;?></option>
+                                   <?php } ?> -->
+
                             <!-- <option value="">Select Shipping Address</option> -->
 <!--                            <option value="">...</option>-->
                         </select>

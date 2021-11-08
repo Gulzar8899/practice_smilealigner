@@ -93,3 +93,26 @@ ALTER TABLE `plans` CHANGE `updated` `updated` INT(2) NOT NULL DEFAULT '1' COMME
 ***********************************************
 ALTER TABLE `plans` ADD `title` VARCHAR(255) NULL AFTER `patient_id`;
 
+
+
+***********************************************
+01 Nov 2021
+***********************************************
+
+ALTER TABLE `plans` CHANGE `detail` `detail` MEDIUMTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+
+***********************************************
+02 Nov 2021
+***********************************************
+No DB Changes
+
+***********************************************
+03 Nov 2021
+***********************************************
+
+INSERT INTO `treatment_case` (`trcase_id`, `case_name`, `status`, `cur_date`) VALUES (NULL, 'Other', '1', '');
+ALTER TABLE `patients` ADD `other_type_of_case` VARCHAR(255) NULL AFTER `type_of_case`;
+
+ALTER TABLE `patients` ADD `special_instruction` TEXT NULL AFTER `pt_case_type`;
+ALTER TABLE `patients` CHANGE `special_instruction` `pt_special_instruction` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;

@@ -63,16 +63,16 @@
                                  <?= $getSingleTreatmentPlan->detail; ?></p>
                     </div>
                      <div class="uk-width-1-1">
-                            <h5 class="pl-15p mt-5p mb-8p"><b>Upper</b> <?= $getTreatmentPlanDetails->upper_aligners ?></h5> 
-                            <h5 class="pl-15p mt-5p mb-8p"><b>Lower </b> <?= $getTreatmentPlanDetails->lower_aligners ?></h5> 
-                            <h5 class="pl-15p mt-5p mb-8p"><b>Approximate cost (PET-G Sheets):  =  Rs</b> <?= $getTreatmentPlanDetails->lower_aligners ?></h5> 
-                            <h5 class="pl-15p mt-5p mb-8p"><b>Approximate cost (DUO Sheets): =  Rs</b> <?= $getTreatmentPlanDetails->lower_aligners ?></h5> 
+                            <h5 class="pl-15p mt-5p mb-8p"><b>Upper</b> <?= $getSingleTreatmentPlan->upper ?></h5> 
+                            <h5 class="pl-15p mt-5p mb-8p"><b>Lower </b> <?= $getSingleTreatmentPlan->lower ?></h5> 
+                            <h5 class="pl-15p mt-5p mb-8p"><b>Approximate cost (PET-G Sheets):  =  Rs</b> <?= $getSingleTreatmentPlan->petg_amount; ?></h5> 
+                            <h5 class="pl-15p mt-5p mb-8p"><b>Approximate cost (DUO Sheets): =  Rs</b> <?= $getSingleTreatmentPlan->duo_amount; ?></h5> 
                     </div>
 
                         <div class="uk-grid uk-margin-medium-top" style="margin-left:-20px;">
                             <div class="uk-width-large-1-5 uk-width-1-1 uk-margin-small-bottom">
                                 <div class="plan-info uk-flex uk-flex-middle pl-15p br-8p">
-                                    <div class="uk-flex">
+                                    <div class="uk-flex uk-flex-middle uk-flex-left">
                                         <a><img src="<?php echo site_url('assets/images/Subtract.svg'); ?>"></a>
                                         <span class="pl-10p">Video.mp4</span>
                                     </div>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="uk-width-large-1-4 uk-width-1-1 uk-margin-small-bottom pl-25p">
                                 <div class="plan-info uk-flex uk-flex-middle pl-15p br-8p">
-                                    <div class="uk-flex uk-flex-middle">
+                                    <div class="uk-flex uk-flex-middle uk-flex-left">
                                         <a><img src="<?php echo site_url('assets/images/pdf.svg'); ?>"></a>
                                         <span class="pl-10p">Treatment Plan.Pdf</span>
                                     </div>
@@ -94,9 +94,18 @@
                             </div>
                             <div class="uk-width-large-1-3 uk-width-1-1 pl-25p">
                                 <div class="plan-info uk-flex uk-flex-middle pl-15p br-8p">
-                                    <div  class="uk-flex uk-flex-middle">
+                                    <div  class="uk-flex uk-flex-middle uk-flex-left">
                                         <a><img src="<?php echo site_url('assets/images/global1.svg'); ?>"></a>
-                                        <span class="" style="word-wrap:break-word !important;"><?= $getSingleTreatmentPlan->link; ?></span>
+                                       <!--  <span class="ml-10p" style="word-wrap:break-word !important;"><?= (strlen($getSingleTreatmentPlan->link) > 22 ) ? substr($getSingleTreatmentPlan->link, 0, 22)."/....." : '- - -'; ?></span> -->
+                                        <span class="ml-10p" style="word-wrap:break-word !important;">
+                                            <?php
+                                                if(strlen($getSingleTreatmentPlan->link) <= 22){
+                                                   echo $getSingleTreatmentPlan->link;
+                                                }else{
+                                                    echo substr($getSingleTreatmentPlan->link, 0, 22)."/.....";
+                                                }   
+                                             ?>
+                                        </span>
                                     </div>
                                     <div>
                                         <a class="pr-10p"><img src="<?php echo site_url('assets/images/Vector (2).svg'); ?>"></a>
@@ -219,7 +228,7 @@
                                   </div>
                                     
                                     <p class="mb-0p uk-margin-medium-top" style="color:grey;font-size: 12px;">Next Order will be in 14 Days</p>
-                                    <a class="uk-margin-small-top md-btn order-further-align-btn" href="http://localhost/smilealigners/doctor/viewTreatmentPlan">Order Further Alignment</a>
+                                    <a class="uk-margin-small-top md-btn order-further-align-btn" href="">Order Further Alignment</a>
 
 
 
