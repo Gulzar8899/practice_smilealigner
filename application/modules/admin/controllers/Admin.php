@@ -265,6 +265,16 @@ class Admin extends MY_Controller
         $this->db->update('photos',$rec);
          redirect('admin');
     }
+    
 
+     public function scanner_pro(){
+        $data['admin_data']    = $this->adminData;
+        $data['accepted_users'] = $this->Admin_model->scannerProList();
+        $this->load->view('elements/admin_header',$data);
+        $this->load->view('admin_topbar',$data);
+        $this->load->view('admin_sidebar',$data);
+        $this->load->view('ScannerPro/indexList.php',$data);
+        $this->load->view('elements/admin_footer',$data);
+    }
     
 }

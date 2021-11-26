@@ -418,7 +418,7 @@ class Doctor extends MY_Controller
         }
         $data['allPatientListData'] = $patient_data_array;
         $data['shipping_address'] = $this->Admin_model->getDoctorShippingAddress();
-        $data['billing_address'] = $this->Admin_model->getDoctorBillingAddress();
+        $data['billing_address'] = $this->Admin_model->getAllBillingAddress();
 
          // echo "<pre>";
          // print_r($data['allPatientListData']);

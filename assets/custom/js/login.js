@@ -32,9 +32,12 @@ $("#loginform").validate({
                         else if(obj.userType == 4){
                             window.location.href = plannerUrl;
                         }
-                        else{
-                            window.location.href = customerUrl;
+                        else if(obj.userType == 6){
+                            window.location.href = ScannerUrl;
                         }
+                     //   else{
+                       //     window.location.href = customerUrl;
+                       // }
                     }
                     else{
                     	$(".resultlogin").html("<div class='alert alert-danger' id='error_msg'>"+obj.message+"</div>");

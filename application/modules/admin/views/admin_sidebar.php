@@ -137,6 +137,16 @@
                                 <span class="menu_title">Business Developer</span>
                             </a>
                         </li>
+                        <?php
+                            $scannerListing = array("scanner_pro", "viewScannerPro", "addScannerPro","editScannerPro", "ScannerProList");
+                            $scannerListingClass = in_array($this->router->fetch_method(), $scannerListing) ? "act_item" : "";
+                        ?>
+                        <li class="<?php echo $scannerListingClass; ?>" title="Scanner Pro">
+                            <a href="<?= base_url('admin/scanner_pro'); ?>">
+                                <span class="menu_icon"><i class="material-icons">person</i></span>
+                                <span class="menu_title">Scanner Pro</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <?php 

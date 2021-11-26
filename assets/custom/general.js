@@ -14,6 +14,11 @@ function deleteDeveloperByID(recordID)
         w3_warning('Are you sure?', recordID, 'users', 'admin/businessdeveloper/deleteDeveloperByID');
     
 }
+function deleteScannerProByID(recordID) 
+{   
+        w3_warning('Are you sure?', recordID, 'users', 'admin/Scannerpro/deleteScannerProByID');
+    
+}
 
 function deletePaymentHistoryByID(recordID, type) 
 {   

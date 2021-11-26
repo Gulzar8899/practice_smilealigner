@@ -44,7 +44,7 @@ class Patient extends MY_Controller
 		}
 		$data['allPatientListData'] = $patient_data_array;
         $data['shipping_address'] = $this->Admin_model->getDoctorShippingAddress();
-        $data['billng_address'] = $this->Admin_model->getAllBillingAdress();
+        $data['billng_address'] = $this->Admin_model->getAllBillingAddress();
         
         $this->load->view('elements/admin_header',$data);
         $this->load->view('admin_topbar',$data);
@@ -422,7 +422,7 @@ class Patient extends MY_Controller
         }
         $data['singlePatient'] = $patient_data_array;
         $data['shipping_address'] = $this->Admin_model->getDoctorShippingAddress();
-        $data['billng_address'] = $this->Admin_model->getAllBillingAdress();
+        $data['billng_address'] = $this->Admin_model->getAllBillingAddress();
         // echo "<pre>";
 		// print_r($data['singlePatient']);
 		// die();

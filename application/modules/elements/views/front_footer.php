@@ -900,6 +900,7 @@
     var adminUrl    = "<?php echo site_url();?>admin/";
     var doctorUrl  = "<?php echo site_url();?>doctor/";
     var plannerUrl  = "<?php echo site_url();?>treatmentplanner/";
+    var ScannerUrl  = "<?php echo site_url();?>treatmentplanner/ShowScanner";
     var loginUrl    = "<?php echo site_url('login/chkUserLogin'); ?>";
 </script>
 

@@ -57,6 +57,15 @@ class Admin_model extends CI_Model {
         $res = $this->db->get('users');
         return $res->result();
     }
+    //List for scanner Prolist 
+     function ScannerProList()
+    {
+        $this->db->select('*');
+        $this->db->where('user_type_id',6);
+        $this->db->where('is_active',1);
+        $res = $this->db->get('users');
+        return $res->result();
+    }
     function declinedUsers()
     {
         $this->db->select('*');

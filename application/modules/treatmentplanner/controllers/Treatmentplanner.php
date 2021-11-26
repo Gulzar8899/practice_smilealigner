@@ -743,4 +743,15 @@ class Treatmentplanner extends MY_Controller
         //RETURN RESPONSE
         echo 1;
     }
+    public function ShowScanner(){
+         $data['userdata']    = $this->userdata;
+        $adminID = $data['userdata']['id'];
+        $data['doctor_data'] = $this->Admin_model->getDoctorByID($adminID);
+         //print_r($adminID);die();
+        $this->load->view('elements/admin_header',$data);
+        $this->load->view('planner_topbar',$data);
+        $this->load->view('planner_sidebar',$data);
+        $this->load->view('scannerpro');
+        $this->load->view('elements/admin_footer',$data);
+    }
 }   
